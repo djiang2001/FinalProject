@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-public class Board extends JFrame{
+public class Deblocked extends JFrame{
     private Container pane;
 
     public Board(){
@@ -32,7 +32,7 @@ public class Board extends JFrame{
 
     public static void main (String[] args )
     {
-	Board game = new Board();
+	Deblocked game = new Deblocked();
 	game.setAlwaysOnTop(true);
 	game.setVisible(true);
 	game.setResizable(false);
