@@ -1,25 +1,27 @@
-public class Grid{
+public class Grid implements {
   public int len;
   public int wid;
   public Block[][] content = new Block[5][5];
 
   public Grid(){
     makeGrid();
-    fillGrid();
+    resetGrid();
   }
 
   public  void makeGrid(){
-    len = 5;
-    wid = 5;
+    len = 10;
+    wid = 10;
   }
 
-  public void fillGrid(){
+  public void resetGrid(){
     for (int i = 0; i < len; i++){
       for (int j = 0; j < wid; j++){
         content[i][j] = new Block("red",i,j);
       }
     }
   }
+
+
 
   public Block[][] getContent(){
     return content;
