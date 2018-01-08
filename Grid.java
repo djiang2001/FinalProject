@@ -1,6 +1,6 @@
 public class Grid{
-  public static int len;
-  public static int wid;
+  public int len;
+  public int wid;
   public Block[][] content = new Block[5][5];
 
   public Grid(){
@@ -8,7 +8,7 @@ public class Grid{
     fillGrid();
   }
 
-  public static void makeGrid(){
+  public  void makeGrid(){
     len = 5;
     wid = 5;
   }
@@ -21,4 +21,11 @@ public class Grid{
     }
   }
 
+  public Block[][] getContent(){
+    return content;
+  }
+
+  public void main(String[] args){
+    System.out.println(getContent());
+  }
 }
