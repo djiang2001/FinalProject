@@ -24,11 +24,10 @@ public class Deblocked extends JFrame{
   public JLabel getScore(){
     return score;
   }
-  
+    
   public static void main (String[] args )
   {
     Deblocked game = new Deblocked();
-    game.setAlwaysOnTop(true);
     game.setVisible(true);
     game.setResizable(false);
   }
