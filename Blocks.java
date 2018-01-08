@@ -6,11 +6,21 @@ public class Blocks{
     private int ycor;
     private int xcor;
 
-    public Blocks(){
-	for (int i = 0; i < 10; i++){
-	    for (int j = 0; j < 10; j++){
-		color = "fix this";
-	    }
-	}
-    }
+  public Blocks(String color, int ycor, int xcor ){
+    this.color = color;
+    this.ycor = ycor;
+    this.xcor = xcor;
+  }
+
+  //-------------------Getters and Setters--------------------
+
+  public int getY(){
+    return ycor;
+  }
+  public int getX(){
+    return xcor;
+  }
+  public String getColor(){
+    return color;
+  }
 }
