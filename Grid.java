@@ -12,6 +12,7 @@ public class Grid extends JPanel{
     setFocusable(true);
     makeGrid(difficulty);
     resetGrid();
+    return content;
   }
 
   public void makeGrid(int difficulty){
@@ -24,9 +25,8 @@ public class Grid extends JPanel{
         } else {
       moves = 20;
     }
-
   }
-
+    
   public void resetGrid(){
     for (int i = 0; i < len; i++){
       for (int j = 0; j < wid; j++){

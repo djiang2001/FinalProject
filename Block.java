@@ -10,6 +10,7 @@ public class Block{
     this.color = color;
     this.ycor = ycor;
     this.xcor = xcor;
+    colorColl.toString();
   }
 
   //-------------------Getters and Setters--------------------
