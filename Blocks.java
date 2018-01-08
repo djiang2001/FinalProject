@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Blocks{
+public class Block{
     private String color;
     private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
     private int ycor;
