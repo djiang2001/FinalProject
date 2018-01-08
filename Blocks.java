@@ -23,4 +23,5 @@ public class Blocks{
   public String getColor(){
     return color;
   }
+
 }
