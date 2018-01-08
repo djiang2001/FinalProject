@@ -1,23 +1,28 @@
-public class Grid implements {
-  public int len;
-  public int wid;
-  public Block[][] content = new Block[5][5];
-  public int moves;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
 
-  public Grid(){
-    makeGrid();
+public class Grid extends JPanel{
+  private int len;
+  private int wid;
+  private Block[][] content = new Block[10][10];
+  private int moves;
+  JLabel Score;
+
+  public Grid(int difficulty){
+    setFocusable(true);
+    makeGrid(difficulty);
     resetGrid();
   }
 
-  public  void makeGrid(int difficulty){
+  public void makeGrid(int difficulty){
     len = 10;
     wid = 10;
     if(difficulty == 1){
-      moves = 30
+      moves = 30;
         } else if(difficulty == 2){
-      moves = 25
+      moves = 25;
         } else {
-      moves = 20
+      moves = 20;
     }
 
   }
@@ -30,6 +35,12 @@ public class Grid implements {
     }
   }
 
+  public void setMoves(int amount){
+    moves = amount;
+  }
+  public int getMoves(){
+    return moves;
+  }
 
 
   public Block[][] getContent(){

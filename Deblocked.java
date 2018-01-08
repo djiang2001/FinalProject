@@ -12,10 +12,12 @@ public class Deblocked extends JFrame{
     this.setTitle("Deblocked");
     this.setSize(600,600);
     this.setLocation(550,150);
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     score = new JLabel("0");
-    add(score, BorderLayout.SOUTH);
+    add(score, BorderLayout.NORTH);
+    Grid board= new Grid(3);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    
   }
 
   public JLabel getScore(){
