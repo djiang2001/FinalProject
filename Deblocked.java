@@ -18,7 +18,6 @@ public class Deblocked extends JFrame{
     Grid board= new Grid(3);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-    System.out.println(board);
   }
 
   public JLabel getScore(){
