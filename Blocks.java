@@ -24,4 +24,14 @@ public class Blocks{
     return color;
   }
 
+  public void setY(int y){
+    ycor = y;
+  }
+  public void setX(int x){
+    xcor = x;
+  }
+  public void setColor(String c){
+    color = c;
+  }
+
 }
