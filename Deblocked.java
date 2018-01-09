@@ -1,33 +1,61 @@
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.border.*;
+import java.util.ArrayList;
 
-public class Deblocked extends JFrame{
+public class Deblocked extends JFrame implements MouseListener{
 
-  JLabel score;
-  
-  public Deblocked(){
-    this.setTitle("Deblocked");
-    this.setSize(600,600);
-    this.setLocation(550,150);
-
-    score = new JLabel("0");
-    add(score, BorderLayout.NORTH);
-    Grid board= new Grid(3);
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-  }
-
-  public JLabel getScore(){
-    return score;
-  }
+    private static Container pane;
+    private Block[][] piece;
+    private ArrayList<Block> blockPiece;
+    JLabel score;
     
-  public static void main (String[] args )
-  {
-    Deblocked game = new Deblocked();
-    game.setVisible(true);
-    game.setResizable(false);
-  }
+  
+    public Deblocked(){
+	
+	this.setTitle("Deblocked");
+	this.setSize(600,600);
+	this.setLocation(550,150);
+	score = new JLabel("0");
+	add(score, BorderLayout.NORTH);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+	pane = this.getContentPane();
+
+	pane.setLayout(new GridLayout(10,10));
+
+    
+    }
+
+    public JLabel getScore(){
+	return score;
+    }
+
+    public void mouseClicked(MouseEvent e){
+	
+    }
+    
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+    
+    public void mouseExited(MouseEvent e) {
+        
+    }
+    
+    public void mousePressed(MouseEvent e) {
+        
+    }
+    
+    public void mouseReleased(MouseEvent e) {
+        
+    } 
+    
+    public static void main (String[] args )
+    {
+	Deblocked game = new Deblocked();
+	game.setVisible(true);
+	game.setResizable(false);
+    }
 }
