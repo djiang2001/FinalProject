@@ -7,7 +7,8 @@ public class Grid extends JPanel{
   private String[][] content = new String[10][10];
   private int moves;
   JLabel Score;
-
+  
+  //--Constructor--//
   public Grid(int difficulty){
     setFocusable(true);
     makeGrid(difficulty);
@@ -15,49 +16,62 @@ public class Grid extends JPanel{
     return content;
   }
 
+  //--Grid Making Methods--//
   public void makeGrid(int difficulty){
     len = 10;
     wid = 10;
     if(difficulty == 1){
       moves = 30;
-        } else if(difficulty == 2){
+    } else if(difficulty == 2){
       moves = 25;
-        } else {
+    } else {
       moves = 20;
     }
   }
 
-    private void drawSquare(Graphics g, int x, int y, Block color){
-	super.paint(g);
-    }
-    
-    public void paint(Graphics g){
-	super.paint(g);
-	for (int i = 0; i < len; i++){
-	    for (int j = 0; j < wid; j++){
-	       
-	    }
-	}
-    }
-    
   public void resetGrid(){
     for (int i = 0; i < len; i++){
       for (int j = 0; j < wid; j++){
-	  Block b = new Block("red",i,j);
-	  content[i][j] = b;
+        Block b = new Block("red",i,j);
+        content[i][j] = b;
       }
     }
   }
 
+  private void addBlock(Graphics g, int x, int y){
+    Color colorSet[] {
+      new Color(255,0,0),
+        new Color(0,0,255),
+        new Color(255,255,0),
+        }
+    Color color = colorSet[];
+    g.setColor(color);
+  }
+    
+  public void paint(Graphics g){
+    super.paint(g);
+
+
+    /*   int top = 
+    for (int i = 0; i < len; i++){
+	    for (int j = 0; j < wid; j++){
+        addBlock(g,0 + j * wid, top + i * len) 
+	    }
+      } */
+  }
+    
+
+
   public void setMoves(int amount){
     moves = amount;
   }
+  
   public int getMoves(){
     return moves;
   }
 
 
-    public String[][] getContent(){
+  public String[][] getContent(){
     return content;
   }
 
