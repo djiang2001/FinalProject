@@ -1,4 +1,5 @@
-import java.util.Random;
+import java.util.ArrayList;
+import javax.swing.*;
 
 public class Block{
     private String color;
@@ -6,11 +7,10 @@ public class Block{
     private int ycor;
     private int xcor;
 
-  public Block(String color, int ycor, int xcor ){
-    this.color = color;
+  public Block(int color, int ycor, int xcor ){
+    this.color = colorColl[color];
     this.ycor = ycor;
     this.xcor = xcor;
-    colorColl.toString();
   }
 
   //-------------------Getters and Setters--------------------
