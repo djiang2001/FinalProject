@@ -22,8 +22,17 @@ public class Deblocked extends JFrame implements MouseListener{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	pane = this.getContentPane();
+	pane.setLayout(new GridLayout(8,8,0,0));
 
-	pane.setLayout(new GridLayout(10,10));
+	boolean backgroundColor = false;
+	squares = new Block[10][10];
+	for(int i = 0; i < blocks.length;i++){
+	    for (int j = 0; j < blocks[i].length;j++) {
+		
+		Block blocks = new Block(
+					 Math.random i,j);
+
+		
 
     
     }
