@@ -9,6 +9,9 @@ public class Deblocked extends JFrame implements MouseListener{
     private static Container pane;
     private Block[][] piece;
     private ArrayList<Block> blockPiece;
+    private boolean selected = false;
+    private Block selectedBlock;
+    public static Border standard = new LineBorder(Color.black);
     JLabel score;
     
   
@@ -26,15 +29,19 @@ public class Deblocked extends JFrame implements MouseListener{
 
 	boolean backgroundColor = false;
 	squares = new Block[10][10];
-	for(int i = 0; i < blocks.length;i++){
-	    for (int j = 0; j < blocks[i].length;j++) {
-		
-		Block blocks = new Block(
-					 Math.random i,j);
+	for(int i = 0; i < squares.length;i++){
+	    for (int j = 0; j < squares[i].length;j++) {	
+		Block blocks = new Block((int) (Math.random()* 5) + 1, i,j);
 
+		squares[i][j] = blocks;
 		
+		blocks.addMouseListener(this);
+		blocks.setBorder(standard);
+		blocks.setOpaque(true);
 
-    
+		pane.add(blocks);
+	    }
+	}
     }
 
     public JLabel getScore(){
