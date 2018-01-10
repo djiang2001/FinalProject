@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class Block{
+public class Block extends JLabel{
     private String color;
     private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
     private int ycor;
