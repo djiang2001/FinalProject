@@ -67,4 +67,5 @@ public class Deblocked extends JFrame implements MouseListener{
 	game.setVisible(true);
 	game.setResizable(false);
     }
+    
 }
