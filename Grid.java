@@ -29,17 +29,16 @@ public class Grid extends JFrame implements MouseListener{
     Random col = new Random();
     squares = new Block[10][10];
     for(int i = 0; i < squares.length;i++){
-	    for (int j = 0; j < squares[i].length;j++) {	
-		Block blocks = new Block(col.nextInt(5), i,j);
-
-        squares[i][j] = blocks;
-		
-        blocks.addMouseListener(this);
-        blocks.setBorder(standard);
-        blocks.setOpaque(true);
-
-        pane.add(blocks);
-	    }
+	for (int j = 0; j < squares[i].length;j++) {	
+	    Block blocks = new Block(col.nextInt(5), i,j);
+	    
+	    squares[i][j] = blocks;
+	    
+	    blocks.addMouseListener(this);
+	    blocks.setBorder(standard);
+	    blocks.setOpaque(true);
+	    pane.add(blocks);
+	}
     }
   }
 
