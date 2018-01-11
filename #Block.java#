@@ -43,5 +43,8 @@ public class Block extends JLabel{
 	icon = new ImageIcon(c+".png");
     }
     
-    //------------------Icon Display------------------
+
+    //------------------Icon Display-------------------
+    
+    
 }
