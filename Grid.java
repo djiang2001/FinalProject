@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 import java.util.ArrayList;
+import java.util.*;
 
 public class Grid extends JFrame implements MouseListener{
 
@@ -13,7 +14,7 @@ public class Grid extends JFrame implements MouseListener{
   private Block selectedBlock;
   public static Border standard = new LineBorder(Color.black);
   JLabel score;
-    
+    JLabel moves;
   
   public Grid(){
 	
@@ -21,17 +22,20 @@ public class Grid extends JFrame implements MouseListener{
     this.setSize(600,600);
     this.setLocation(550,150);
     score = new JLabel("0");
+    moves = new JLabel("20");
     add(score, BorderLayout.NORTH);
+    add(moves, BorderLayout.NORTH);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     pane = this.getContentPane();
     pane.setLayout(new GridLayout(8,8,0,0));
 
     boolean backgroundColor = false;
+    Random col = new Random();
     squares = new Block[10][10];
     for(int i = 0; i < squares.length;i++){
 	    for (int j = 0; j < squares[i].length;j++) {	
-        Block blocks = new Block((int) (Math.random()* 5) + 1, i,j);
+		Block blocks = new Block(col.nextInt(5), i,j);
 
         squares[i][j] = blocks;
 		
