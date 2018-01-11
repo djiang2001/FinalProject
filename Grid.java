@@ -1,81 +1,77 @@
-import javax.swing.JPanel;
-import javax.swing.JLabel;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.border.*;
+import java.util.ArrayList;
 
-public class Grid extends JPanel{
-  private int len;
-  private int wid;
-  private String[][] content = new String[10][10];
-  private int moves;
-  JLabel Score;
-  
-  //--Constructor--//
-  public Grid(int difficulty){
-    setFocusable(true);
-    makeGrid(difficulty);
-    resetGrid();
-    return content;
-  }
+public class Grid extends JFrame implements MouseListener{
 
-  //--Grid Making Methods--//
-  public void makeGrid(int difficulty){
-    len = 10;
-    wid = 10;
-    if(difficulty == 1){
-      moves = 30;
-    } else if(difficulty == 2){
-      moves = 25;
-    } else {
-      moves = 20;
-    }
-  }
-
-  public void resetGrid(){
-    for (int i = 0; i < len; i++){
-      for (int j = 0; j < wid; j++){
-        Block b = new Block("red",i,j);
-        content[i][j] = b;
-      }
-    }
-  }
-
-  private void addBlock(Graphics g, int x, int y){
-    Color colorSet[] {
-      new Color(255,0,0),
-        new Color(0,0,255),
-        new Color(255,255,0),
-        }
-    Color color = colorSet[];
-    g.setColor(color);
-  }
+    private static Container pane;
+    private Block[][] squares;
+    private ArrayList<Block> blockPiece;
+    private boolean selected = false;
+  private Block selectedBlock;
+  public static Border standard = new LineBorder(Color.black);
+  JLabel score;
     
-  public void paint(Graphics g){
-    super.paint(g);
+  
+  public Grid(){
+	
+    this.setTitle("Deblocked");
+    this.setSize(600,600);
+    this.setLocation(550,150);
+    score = new JLabel("0");
+    add(score, BorderLayout.NORTH);
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+    pane = this.getContentPane();
+    pane.setLayout(new GridLayout(8,8,0,0));
 
-    /*   int top = 
-    for (int i = 0; i < len; i++){
-	    for (int j = 0; j < wid; j++){
-        addBlock(g,0 + j * wid, top + i * len) 
+    boolean backgroundColor = false;
+    squares = new Block[10][10];
+    for(int i = 0; i < squares.length;i++){
+	    for (int j = 0; j < squares[i].length;j++) {	
+        Block blocks = new Block((int) (Math.random()* 5) + 1, i,j);
+
+        squares[i][j] = blocks;
+		
+        blocks.addMouseListener(this);
+        blocks.setBorder(standard);
+        blocks.setOpaque(true);
+
+        pane.add(blocks);
 	    }
-      } */
+    }
+  }
+
+  public JLabel getScore(){
+    return score;
+  }
+
+  public void mouseClicked(MouseEvent e){
+	
   }
     
-
-
-  public void setMoves(int amount){
-    moves = amount;
+  public void mouseEntered(MouseEvent e) {
+        
   }
-  
-  public int getMoves(){
-    return moves;
+    
+  public void mouseExited(MouseEvent e) {
+        
   }
-
-
-  public String[][] getContent(){
-    return content;
+    
+  public void mousePressed(MouseEvent e) {
+        
   }
-
-  public void main(String[] args){
-    System.out.println(getContent());
+    
+  public void mouseReleased(MouseEvent e) {
+        
+  } 
+    
+  public static void main (String[] args )
+  {
+    Grid game = new Grid();
+    game.setVisible(true);
+    game.setResizable(false);
   }
 }

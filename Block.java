@@ -35,4 +35,8 @@ public class Block extends JLabel{
     color = c;
   }
 
+  public String toString(){
+    return "";
+  }
+
 }
