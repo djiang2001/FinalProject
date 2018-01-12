@@ -8,7 +8,7 @@ import java.util.*;
 public class Grid extends JFrame implements MouseListener{
   
   private static Container pane;
-  private Block[][] squares;
+    private Block[][] squares;
   private ArrayList<Block> blockPiece;
   private boolean selected = false;
   private Block selectedBlock;
@@ -28,7 +28,7 @@ public class Grid extends JFrame implements MouseListener{
     
     Random col = new Random();
 
-    squares = new Block[10][10];
+    squares = new Block[8][8];
     
     for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
