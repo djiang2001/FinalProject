@@ -13,8 +13,8 @@ public class Block extends JLabel{
     this.color = colorColl[color];
     this.ycor = ycor;
     this.xcor = xcor;
-    setIcon(this.color);
-    new JLabel(getIcon());
+    this.icon = new ImageIcon("~/blocks/"+this.color+".png");
+    setIcon(icon);
     setVisible(true);
   }
   
@@ -42,9 +42,9 @@ public class Block extends JLabel{
   public void setColor(String c){
     color = c;
   }
-  public void setIcon(String c){
-    icon = new ImageIcon("~/blocks/"+c+".png");
-  }
+    //public void setIcon(String c){
+    //icon = new ImageIcon("~/blocks/"+c+".png");
+    // }
   
   //------------------Icon Display------------------
   
