@@ -34,12 +34,11 @@ public class Grid extends JFrame implements MouseListener{
       for (int j = 0; j < squares[i].length;j++) {	
         Block blocks = new Block(col.nextInt(5), i,j);
         
-        squares[i][j] = blocks;
-        
+        squares[i][j] = blocks;	
         blocks.addMouseListener(this);
         blocks.setBorder(standard);
         blocks.setOpaque(true);
-        pane.add(new JLabel(blocks.getIcon()));
+	pane.add(blocks);
         pane.setVisible(true);
       }
     }
@@ -78,8 +77,6 @@ public class Grid extends JFrame implements MouseListener{
   public static void main (String[] args )
   {
     Grid game = new Grid();
-    JFrame frame = new JFrame("Deblocked");
-    frame.add(pane);
     game.setVisible(true);
     game.setResizable(false);
   }

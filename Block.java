@@ -44,7 +44,6 @@ public class Block extends JLabel{
   }
   public void setIcon(String c){
     icon = new ImageIcon("~/blocks/"+c+".png");
-    System.out.println(c);
   }
   
   //------------------Icon Display------------------
