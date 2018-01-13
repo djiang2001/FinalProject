@@ -7,7 +7,7 @@ public class Block extends JLabel{
   private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
   private int ycor;
   private int xcor;
-  private Icon icon;
+  private ImageIcon icon;
   
   public Block(int color, int ycor, int xcor ){
     this.color = colorColl[color];
@@ -41,6 +41,10 @@ public class Block extends JLabel{
   }
   public void setColor(String c){
     color = c;
+  }
+
+  public String toString(){
+    return "";
   }
     //public void setIcon(String c){
     //icon = new ImageIcon("~/blocks/"+c+".png");
