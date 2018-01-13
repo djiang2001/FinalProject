@@ -9,32 +9,31 @@ public class Grid extends JFrame implements MouseListener{
 
     
     private static Container pane;
-    private Block[][] squares;
-    private ArrayList<Block> blockPiece;
+    private Piece[][] squares;
     private boolean selected = false;
-    private Block selectedBlock;
+    private Piece selectedBlock;
     private int moves = 20;
   public static Border standard = new LineBorder(Color.black);
   
   public Grid(){
     
-    this.setTitle("Deblocked");
+    this.setTitle("Unblocked");
     this.setSize(600,600);//Creates a JFrame size 600 by 600
     this.setLocation(550,150);//Sets the location at 550, 150
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     
     pane = this.getContentPane();
-    pane.setLayout(new GridLayout(8,8));
+    pane.setLayout(new GridLayout(10,10));
     
     boolean backgroundColor = false;
     
     Random col = new Random();
 
-    squares = new Block[8][8];
+    squares = new Piece[10][10];
     
     for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
-        Block blocks = new Block(col.nextInt(5), i,j);
+        Piece blocks = new Piece(col.nextInt(5), i,j);
 
 
         squares[i][j] = blocks;
@@ -65,7 +64,7 @@ public class Grid extends JFrame implements MouseListener{
     }
     
   public void mouseClicked(MouseEvent e){
-    Block a = (Block) e.getSource();
+    Piece a = (Piece) e.getSource();
     
     System.out.println(a.getX());
     System.out.println(a.getY());

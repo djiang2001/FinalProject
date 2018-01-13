@@ -2,30 +2,32 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 
-public class Block extends JLabel{
+public class Piece extends JLabel{
   private String color;
   private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
   private int ycor;
   private int xcor;
   private ImageIcon icon;
   
-  public Block(int color, int ycor, int xcor ){
-    this.color = colorColl[color];
+  public Piece(int col, int ycor, int xcor ){
+    color = colorColl[col];
     this.ycor = ycor;
     this.xcor = xcor;
-    this.icon = new ImageIcon("~/blocks/"+this.color+".png");
+    icon = new ImageIcon("~/blocks/"+col+".png");
     setIcon(icon);
     setVisible(true);
   }
   
   //-------------------Getters and Setters--------------------
   
-  public int getY(){
-    return ycor;
-  }
   public int getX(){
     return xcor;
   }
+  
+  public int getY(){
+    return ycor;
+  }
+ 
   public String getColor(){
     return color;
   }
@@ -37,7 +39,7 @@ public class Block extends JLabel{
     ycor = y;
   }
   public void setX(int x){
-    // XXX: cor = x;
+    xcor = x;
   }
   public void setColor(String c){
     color = c;
@@ -46,9 +48,9 @@ public class Block extends JLabel{
   public String toString(){
     return "";
   }
-    //public void setIcon(String c){
-    //icon = new ImageIcon("~/blocks/"+c+".png");
-    // }
+  //public void setIcon(String c){
+  //icon = new ImageIcon("~/blocks/"+c+".png");
+  // }
   
   //------------------Icon Display------------------
   
