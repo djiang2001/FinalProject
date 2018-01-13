@@ -14,15 +14,7 @@ public class Grid extends JFrame implements MouseListener{
     private boolean selected = false;
     private Block selectedBlock;
     private int moves = 20;
-    public static Border standard = new LineBorder(Color.black);
-=======
-  private static Container pane;
-    private Block[][] squares;
-  private ArrayList<Block> blockPiece;
-  private boolean selected = false;
-  private Block selectedBlock;
   public static Border standard = new LineBorder(Color.black);
->>>>>>> d4dfa3d467246b44760e72ea2f6c17cb07acf10e
   
   public Grid(){
     
