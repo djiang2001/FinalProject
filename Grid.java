@@ -88,8 +88,8 @@ public class Grid extends JFrame implements MouseListener{
   
   public void mouseReleased(MouseEvent e) {
     
-  } 
-  
+  }
+
   public String toString() {
     return "";
   }
