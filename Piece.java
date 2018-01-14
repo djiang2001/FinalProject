@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import javax.swing.*;
-import java.awt.*;
 
 public class Piece extends JLabel{
   private String color;
@@ -13,7 +12,7 @@ public class Piece extends JLabel{
     color = colorColl[col];
     this.ycor = ycor;
     this.xcor = xcor;
-    icon = new ImageIcon("~/blocks/"+col+".png");
+     icon = new ImageIcon("~/blocks/"+col+".png");
     setIcon(icon);
     setVisible(true);
   }
