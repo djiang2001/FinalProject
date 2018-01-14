@@ -9,10 +9,12 @@ public class Grid extends JFrame implements MouseListener{
 
     
     private static Container pane;
-    private Piece[][] squares;
+    private JLabel[][] squares;
+  private Piece[][] rectangles;
     private boolean selected = false;
     private Piece selectedBlock;
     private int moves = 20;
+  private int goal = 100;
   public static Border standard = new LineBorder(Color.black);
   
   public Grid(){
@@ -29,16 +31,18 @@ public class Grid extends JFrame implements MouseListener{
     
     Random col = new Random();
 
-    squares = new Piece[10][10];
+    squares = new JLabel[10][10];
+    rectangles = new Piece[10][10];
     
     for(int i = 0; i < squares.length;i++){
-      for (int j = 0; j < squares[i].length;j++) {	
-        Piece blocks = new Piece(col.nextInt(5), i,j);
+      for (int j = 0; j < squares[i].length;j++) {
+        JLabel blocks = new JLabel();
+        //Piece blocks = new Piece(col.nextInt(5), i,j);
 
 
         squares[i][j] = blocks;
 	
-        blocks.addMouseListener(this);
+       
         blocks.setBorder(standard);
         blocks.setOpaque(true);
 
@@ -54,6 +58,15 @@ public class Grid extends JFrame implements MouseListener{
 	}
 	
 	pane.add(blocks);
+      }
+      
+    }
+
+    for(int i = 0; i < squares.length;i++){
+      for (int j = 0; j < squares[i].length;j++) {
+        Piece pieces = new Piece(col.nextInt(5), i,j);
+
+        rectangles[i][j] = pieces;
 
       }
     }
@@ -70,7 +83,6 @@ public class Grid extends JFrame implements MouseListener{
     System.out.println(a.getY());
     System.out.println(a.getColor());
     System.out.println(this.getMoves());
-
 
   }
   
@@ -90,6 +102,14 @@ public class Grid extends JFrame implements MouseListener{
     
   }
 
+  public boolean hasChain(Piece a, Piece b, Piece c){
+    boolean result = false;
+    if(a.getColor().equals(b.getColor().equals(c.getColor()))){
+      result = true;
+    }
+    return result;
+   }
+
   public String toString() {
     return "";
   }
@@ -100,5 +120,6 @@ public class Grid extends JFrame implements MouseListener{
     Grid game = new Grid();
     game.setVisible(true);
     game.setResizable(false);
+    
   }
 }
