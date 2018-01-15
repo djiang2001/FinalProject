@@ -10,6 +10,7 @@ public class Grid extends JFrame implements MouseListener{
     
     private static Container pane;
     private Piece[][] squares;
+  private JLabel[][] rectangles;
     private boolean selected = false;
     private Piece selectedBlock;
     private int moves = 20;
@@ -28,6 +29,7 @@ public class Grid extends JFrame implements MouseListener{
     Random col = new Random();
 
     squares = new Piece[10][10];
+    rectangles = new JLabel[10][10];
     
     for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
@@ -37,6 +39,7 @@ public class Grid extends JFrame implements MouseListener{
         JLabel icons = new JLabel(ic);
         
         squares[i][j] = blocks;
+        rectangles[i][j] = icons;
         icons.addMouseListener(this);
         icons.setBorder(standard);
 
@@ -63,7 +66,7 @@ public class Grid extends JFrame implements MouseListener{
   }
     
   public void mouseClicked(MouseEvent e){
-    Piece a = (Piece) e.getSource();
+    JLabel a = (JLabel) e.getSource();
 
     System.out.println("1");
     /*  System.out.println(a.getX());
@@ -73,7 +76,8 @@ public class Grid extends JFrame implements MouseListener{
     */
 
   }
-  
+
+  //--MouseListener--//
   public void mouseEntered(MouseEvent e) {
     
   }
