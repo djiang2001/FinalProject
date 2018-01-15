@@ -8,12 +8,12 @@ import java.util.*;
 public class Grid extends JFrame implements MouseListener{
 
     
-    private static Container pane;
-    private JLabel[][] squares;
+  private static Container pane;
+  private JLabel[][] squares;
   private Piece[][] rectangles;
-    private boolean selected = false;
-    private Piece selectedBlock;
-    private int moves = 20;
+  private boolean selected = false;
+  private Piece selectedBlock;
+  private int moves = 20;
   private int goal = 100;
   public static Border standard = new LineBorder(Color.black);
   
@@ -42,22 +42,22 @@ public class Grid extends JFrame implements MouseListener{
 
         squares[i][j] = blocks;
 	
-       
+        blocks.addMouseListener(this);
         blocks.setBorder(standard);
         blocks.setOpaque(true);
 
-	if (j == 0) { 
-	    backgroundColor = !backgroundColor;
-	}
-	if (backgroundColor) {
-	    blocks.setBackground(Color.pink);
-	    backgroundColor = false;
-	} else {
-	    blocks.setBackground(Color.blue);
-	    backgroundColor = true;
-	}
+        if (j == 0) { 
+          backgroundColor = !backgroundColor;
+        }
+        if (backgroundColor) {
+          blocks.setBackground(Color.pink);
+          backgroundColor = false;
+        } else {
+          blocks.setBackground(Color.blue);
+          backgroundColor = true;
+        }
 	
-	pane.add(blocks);
+        pane.add(blocks);
       }
       
     }
@@ -72,17 +72,15 @@ public class Grid extends JFrame implements MouseListener{
     }
   }
   
-    private int getMoves(){
-	return moves;
-    }
+  private int getMoves(){
+    return moves;
+  }
     
   public void mouseClicked(MouseEvent e){
-    Piece a = (Piece) e.getSource();
+    JLabel a = (JLabel) e.getSource();
     
-    System.out.println(a.getX());
-    System.out.println(a.getY());
-    System.out.println(a.getColor());
-    System.out.println(this.getMoves());
+    System.out.println("1");
+
 
   }
   
@@ -108,7 +106,7 @@ public class Grid extends JFrame implements MouseListener{
       result = true;
     }
     return result;
-   }
+  }
 
   public String toString() {
     return "";
