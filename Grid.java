@@ -22,6 +22,8 @@ public class Grid extends JFrame implements MouseListener{
   private int moves = 20;
   private int score = 0;
   private int goal = 500;
+  private String[] colorHor;
+  private String[] colorVert;
   public static Border standard = new LineBorder(Color.black);
   
   public Grid(){
@@ -124,19 +126,20 @@ public class Grid extends JFrame implements MouseListener{
             System.out.println("_________________");
             
             if(!selected){
-            selected = true;
-            selectedBlock = squares[x][y];
-            System.out.println(selectedBlock.getX());
+              selected = true;
+              selectedBlock = squares[x][y];
+              System.out.println(selectedBlock.getX());
             } else if(selected){
               System.out.println(hasMatch(selectedBlock,squares[x][y]));
               //change selected with second click and check chain
             }
-          }
+
+          } 
         }
       }
     }
-      
   }
+      
   
   //--MouseListener--//
   public void mouseEntered(MouseEvent e) {
