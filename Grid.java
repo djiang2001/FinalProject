@@ -78,13 +78,6 @@ public class Grid extends JFrame implements MouseListener{
           }
         }
       }
-      // System.out.println("1");
-    /*  System.out.println(a.getX());
-    System.out.println(a.getY());
-    System.out.println(a.getColor());
-    System.out.println(this.getMoves());
-    */
-    
     }
   
   //--MouseListener--//

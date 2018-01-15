@@ -45,9 +45,7 @@ public class Piece extends JLabel{
   public String toString(){
     return "";
   }
-  //public void setIcon(String c){
-  //icon = new ImageIcon("~/blocks/"+c+".png");
-  // }
+
   
   //------------------Icon Display------------------
   
