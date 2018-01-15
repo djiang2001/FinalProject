@@ -34,13 +34,8 @@ public class Grid extends JFrame implements MouseListener{
     for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
         Piece blocks = new Piece(col.nextInt(5), i,j);
-<<<<<<< HEAD
-        
         ImageIcon ic = new ImageIcon("/home/ahmed/FinalProject/blocks/" + blocks.getColor()+ ".png");
-=======
 
-        ImageIcon ic = new ImageIcon("/home/FinalProject/blocks/" + blocks.getColor()+ ".png");
->>>>>>> b28fe51102c82aea24001f8f60918d370f073e4a
         JLabel icons = new JLabel(ic);
         blocks.setY(i);
         blocks.setX(j);
