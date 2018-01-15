@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class Grid extends JFrame implements MouseListener{
-
-    
-    private static Container pane;
-    private Piece[][] squares;
+  
+  
+  private static Container pane;
+  private Piece[][] squares;
   private JLabel[][] rectangles;
-    private boolean selected = false;
-    private Piece selectedBlock;
-    private int moves = 20;
+  private boolean selected = false;
+  private Piece selectedBlock;
+  private int moves = 20;
   public static Border standard = new LineBorder(Color.black);
   
   public Grid(){
@@ -27,30 +27,31 @@ public class Grid extends JFrame implements MouseListener{
     pane.setLayout(new GridLayout(10,10));
     
     Random col = new Random();
-
+    
     squares = new Piece[10][10];
     rectangles = new JLabel[10][10];
     
     for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
         Piece blocks = new Piece(col.nextInt(5), i,j);
-
+        
         ImageIcon ic = new ImageIcon("/home/ahmed/FinalProject/blocks/" + blocks.getColor()+ ".png");
         JLabel icons = new JLabel(ic);
-        
+        blocks.setY(i);
+        blocks.setX(j);
         squares[i][j] = blocks;
         rectangles[i][j] = icons;
         icons.addMouseListener(this);
         icons.setBorder(standard);
-
-	
+        
+        
         pane.add(icons);
-
+        
       }
     }
   }
 
-
+  
   public boolean hasChain(Piece a, Piece b, Piece c){
     boolean result = false;
     if(a.getColor().equals(b.getColor().equals(c.getColor()))){
@@ -58,25 +59,34 @@ public class Grid extends JFrame implements MouseListener{
     }
     return result;
   }
-
+  
   //-Getters--//
   
   private int getMoves(){
     return moves;
   }
-    
-  public void mouseClicked(MouseEvent e){
-    JLabel a = (JLabel) e.getSource();
-
-    System.out.println("1");
+  
+    public void mouseClicked(MouseEvent e){
+      JLabel a = (JLabel) e.getSource();
+      for (int y = 0; y < squares.length; y++){
+        for (int x = 0; x < squares[y].length; x++){
+          if (a == rectangles[x][y]){
+            System.out.println(squares[x][y].getX());
+            System.out.println(squares[x][y].getY());
+            System.out.println(squares[x][y].getColor());
+            System.out.println(getMoves());
+          }
+        }
+      }
+      // System.out.println("1");
     /*  System.out.println(a.getX());
     System.out.println(a.getY());
     System.out.println(a.getColor());
     System.out.println(this.getMoves());
     */
-
-  }
-
+    
+    }
+  
   //--MouseListener--//
   public void mouseEntered(MouseEvent e) {
     
@@ -93,14 +103,9 @@ public class Grid extends JFrame implements MouseListener{
   public void mouseReleased(MouseEvent e) {
     
   }
-
-  public String toString() {
-    return "";
-  }
-
   
-  public static void main (String[] args )
-  {
+  
+  public static void main (String[] args){
     Grid game = new Grid();
     game.setVisible(true);
     game.setResizable(false);
