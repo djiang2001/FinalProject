@@ -4,27 +4,20 @@ import javax.swing.*;
 public class Piece extends JLabel{
   private String color;
   private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
-  private int ycor;
-  private int xcor;
+  private Coord location;
   private ImageIcon icon;
   
-  public Piece(int col, int ycor, int xcor ){
+  public Piece(int col, int xcor, int ycor ){
     color = colorColl[col];
-    this.ycor = ycor;
-    this.xcor = xcor;
- 
+    location = new Coord(xcor,ycor);
   }
   
   //-------------------Getters and Setters--------------------
   
-  public int getX(){
-    return xcor;
+  public Coord getCor(){
+    return location;
   }
   
-  public int getY(){
-    return ycor;
-  }
- 
   public String getColor(){
     return color;
   }
@@ -32,12 +25,11 @@ public class Piece extends JLabel{
     return icon;
   }
   
-  public void setY(int y){
-    ycor = y;
+  public void setCor(int xcor, int ycor){
+    location.setX(xcor);
+    location.setY(ycor);
   }
-  public void setX(int x){
-    xcor = x;
-  }
+  
   public void setColor(String c){
     color = c;
   }

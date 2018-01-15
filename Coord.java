@@ -15,8 +15,19 @@ public class Coord{
     return y;
   }
 
+  public void setX(int xcor){
+    x = xcor;
+  }
+
+  public void setY(int ycor){
+    y = ycor;
+  }
+
   public boolean equals(Coord position){
     return getX() == position.getX() && getY() == position.getY();
   }
 
+  public String toString(){
+    return "(" + getX() + "," + getY() + ")";
+  }
 }
