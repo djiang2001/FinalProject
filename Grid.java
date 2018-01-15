@@ -35,8 +35,8 @@ public class Grid extends JFrame implements MouseListener{
     scorePanel.add(ascore,BorderLayout.SOUTH);
     goalPanel.add(agoal,BorderLayout.SOUTH);
     this.setTitle("Unblocked");
-    this.setSize(800,900);//Creates a JFrame size 600 by 600
-    this.setLocation(550,150);//Sets the location at 550, 150
+    this.setSize(800,900);//Creates a JFrame size 800 by 900
+    this.setLocation(550,60);//Sets the location at 550, 60
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     
     pane = this.getContentPane();
@@ -111,7 +111,7 @@ public class Grid extends JFrame implements MouseListener{
   
   public void mouseClicked(MouseEvent e){
     if(moves == 0){
-        
+      amove.setText("Game Over");
     }else{
       JLabel a = (JLabel) e.getSource();
       for (int y = 0; y < squares.length; y++){
