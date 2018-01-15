@@ -122,6 +122,15 @@ public class Grid extends JFrame implements MouseListener{
             System.out.println(squares[x][y].getColor());
             System.out.println(getMoves());
             System.out.println("_________________");
+            
+            if(!selected){
+            selected = true;
+            selectedBlock = squares[x][y];
+            System.out.println(selectedBlock.getX());
+            } else if(selected){
+              System.out.println("1");
+              //change selected with second click and check chain
+            }
           }
         }
       }
