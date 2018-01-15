@@ -75,6 +75,7 @@ public class Grid extends JFrame implements MouseListener{
             System.out.println(squares[x][y].getY());
             System.out.println(squares[x][y].getColor());
             System.out.println(getMoves());
+            System.out.println("_________________");
           }
         }
       }
