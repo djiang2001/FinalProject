@@ -80,7 +80,7 @@ public class Grid extends JFrame implements MouseListener{
     return result;
   }
 
-  public void fallDown(Piece a, Piece b){
+  public void fallDown(Piece a ){
     
   }
   //-Getters--//
@@ -128,7 +128,7 @@ public class Grid extends JFrame implements MouseListener{
             selectedBlock = squares[x][y];
             System.out.println(selectedBlock.getX());
             } else if(selected){
-              System.out.println("1");
+              System.out.println(hasMatch(selectedBlock,squares[x][y]));
               //change selected with second click and check chain
             }
           }
