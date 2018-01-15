@@ -51,12 +51,11 @@ public class Grid extends JFrame implements MouseListener{
     
     for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
-        Piece blocks = new Piece(col.nextInt(5), i,j);
+        Piece blocks = new Piece(col.nextInt(5),j,i);
         ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + blocks.getColor()+ ".png");
 
         JLabel icons = new JLabel(ic);
-        blocks.setY(i);
-        blocks.setX(j);
+        blocks.setCor(j,i);
 
         squares[i][j] = blocks;
         rectangles[i][j] = icons;
@@ -119,8 +118,7 @@ public class Grid extends JFrame implements MouseListener{
       for (int y = 0; y < squares.length; y++){
         for (int x = 0; x < squares[y].length; x++){
           if (a == rectangles[x][y]){
-            System.out.println(squares[x][y].getX());
-            System.out.println(squares[x][y].getY());
+            System.out.println(squares[x][y].getCor());
             System.out.println(squares[x][y].getColor());
             System.out.println(getMoves());
             System.out.println("_________________");
@@ -128,7 +126,7 @@ public class Grid extends JFrame implements MouseListener{
             if(!selected){
               selected = true;
               selectedBlock = squares[x][y];
-              System.out.println(selectedBlock.getX());
+              System.out.println(selectedBlock.getCor());
             } else if(selected){
               System.out.println(hasMatch(selectedBlock,squares[x][y]));
               //change selected with second click and check chain
