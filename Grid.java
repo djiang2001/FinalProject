@@ -8,13 +8,11 @@ import java.util.*;
 public class Grid extends JFrame implements MouseListener{
 
     
-  private static Container pane;
-  private JLabel[][] squares;
-  private Piece[][] rectangles;
-  private boolean selected = false;
-  private Piece selectedBlock;
-  private int moves = 20;
-  private int goal = 100;
+    private static Container pane;
+    private Piece[][] squares;
+    private boolean selected = false;
+    private Piece selectedBlock;
+    private int moves = 20;
   public static Border standard = new LineBorder(Color.black);
   
   public Grid(){
@@ -27,60 +25,52 @@ public class Grid extends JFrame implements MouseListener{
     pane = this.getContentPane();
     pane.setLayout(new GridLayout(10,10));
     
-    boolean backgroundColor = false;
-    
     Random col = new Random();
 
-    squares = new JLabel[10][10];
-    rectangles = new Piece[10][10];
+    squares = new Piece[10][10];
     
     for(int i = 0; i < squares.length;i++){
-      for (int j = 0; j < squares[i].length;j++) {
-        JLabel blocks = new JLabel();
-        //Piece blocks = new Piece(col.nextInt(5), i,j);
+      for (int j = 0; j < squares[i].length;j++) {	
+        Piece blocks = new Piece(col.nextInt(5), i,j);
 
-
+        ImageIcon ic = new ImageIcon("/home/ahmed/FinalProject/blocks/" + blocks.getColor()+ ".png");
+        JLabel icons = new JLabel(ic);
+        
         squares[i][j] = blocks;
+        icons.addMouseListener(this);
+        icons.setBorder(standard);
+
 	
-        blocks.addMouseListener(this);
-        blocks.setBorder(standard);
-        blocks.setOpaque(true);
-
-        if (j == 0) { 
-          backgroundColor = !backgroundColor;
-        }
-        if (backgroundColor) {
-          blocks.setBackground(Color.pink);
-          backgroundColor = false;
-        } else {
-          blocks.setBackground(Color.blue);
-          backgroundColor = true;
-        }
-	
-        pane.add(blocks);
-      }
-      
-    }
-
-    for(int i = 0; i < squares.length;i++){
-      for (int j = 0; j < squares[i].length;j++) {
-        Piece pieces = new Piece(col.nextInt(5), i,j);
-
-        rectangles[i][j] = pieces;
+        pane.add(icons);
 
       }
     }
   }
+
+
+  public boolean hasChain(Piece a, Piece b, Piece c){
+    boolean result = false;
+    if(a.getColor().equals(b.getColor().equals(c.getColor()))){
+      result = true;
+    }
+    return result;
+  }
+
+  //-Getters--//
   
   private int getMoves(){
     return moves;
   }
     
   public void mouseClicked(MouseEvent e){
-    JLabel a = (JLabel) e.getSource();
-    
-    System.out.println("1");
+    Piece a = (Piece) e.getSource();
 
+    System.out.println("1");
+    /*  System.out.println(a.getX());
+    System.out.println(a.getY());
+    System.out.println(a.getColor());
+    System.out.println(this.getMoves());
+    */
 
   }
   
@@ -100,14 +90,6 @@ public class Grid extends JFrame implements MouseListener{
     
   }
 
-  public boolean hasChain(Piece a, Piece b, Piece c){
-    boolean result = false;
-    if(a.getColor().equals(b.getColor().equals(c.getColor()))){
-      result = true;
-    }
-    return result;
-  }
-
   public String toString() {
     return "";
   }
@@ -118,6 +100,5 @@ public class Grid extends JFrame implements MouseListener{
     Grid game = new Grid();
     game.setVisible(true);
     game.setResizable(false);
-    
   }
 }
