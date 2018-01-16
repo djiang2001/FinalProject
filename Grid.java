@@ -18,8 +18,9 @@ public class Grid extends JFrame implements MouseListener{
   private JLabel ascore;
   private JLabel agoal;
   private boolean selected = false;
-  private Piece selectedBlock1;
-  private Piece selectedBlock2;
+  private String colorTemp;
+    private int selectedX;
+    private int selectedY;
   private int moves = 20;
   private int score = 0;
   private int goal = 500;
@@ -56,7 +57,6 @@ public class Grid extends JFrame implements MouseListener{
         ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + blocks.getColor()+ ".png");
 
         JLabel icons = new JLabel(ic);
-        blocks.setCor(j,i);
 
         squares[i][j] = blocks;
         rectangles[i][j] = icons;
@@ -146,26 +146,37 @@ public class Grid extends JFrame implements MouseListener{
       for (int y = 0; y < squares.length; y++){
         for (int x = 0; x < squares[y].length; x++){
           if (a == rectangles[x][y]){
-            System.out.println(squares[y][x].getCor());
-            System.out.println(squares[y][x].getColor());
+            System.out.println(squares[x][y].getX());
+            System.out.println(squares[x][y].getColor());
             //      System.out.println(getMoves());
            
             if(!selected){
               selected = true;
-              selectedBlock1 = squares[y][x];
-              System.out.println(selectedBlock1.getCor());
+              colorTemp = squares[x][y].getColor();
+	      selectedX = x;
+	      selectedY = y;
+              System.out.println(colorTemp);
             }
-            else{
-              selected = false;
-              selectedBlock2 = squares[y][x];
-              int tempx = selectedBlock1.getCor().getX();
-              int tempy = selectedBlock1.getCor().getY();
-              int tempx1 = selectedBlock2.getCor().getX();
-              int tempy1 = selectedBlock2.getCor().getY();
 
+            else if(selected){
+		System.out.println("Current:" + squares[x][y].getColor());
+		//System.out.println("Past:" + selectedBlock2.getColor());
+		squares[selectedX][selectedY].setColor(squares[x][y].getColor());
+		//System.out.println("After" + squares[selectedBlock2.getX()][selectedBlock2.getY()].getColor());
+		squares[x][y].setColor(colorTemp);
+		
+	        
+
+		colorTemp =  null;
+		
+		//selectedBlock2 = null;
+		selected = false;
+		/*selectedBlock2 = squares[y][x];
+		  int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();
+		*/
               
-              selectedBlock1.getCor().setX(tempx1);
-              selectedBlock1.getCor().setY(tempy1);
+	      /* selectedBlock1.getCor().setX(y);
+              selectedBlock1.getCor().setY(x);
               selectedBlock2.getCor().setX(tempx);
               selectedBlock2.getCor().setY(tempy);
 
@@ -180,6 +191,7 @@ public class Grid extends JFrame implements MouseListener{
                   pane.add(rectangles[i][j]);
                 }
               }
+	      
               pane.add(movePanel);
               pane.add(scorePanel);
               pane.add(goalPanel);
@@ -189,6 +201,9 @@ public class Grid extends JFrame implements MouseListener{
               selectedBlock2 = null;
               //  System.out.println(hasMatch(selectedBlock,squares[x][y]));
               //change selected with second click and check chain
+              selected = false;
+	      System.out.println(selected);
+	      */
             }
           }
         }
