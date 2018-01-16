@@ -155,13 +155,17 @@ public class Grid extends JFrame implements MouseListener{
               selectedBlock1 = squares[y][x];
               System.out.println(selectedBlock1.getCor());
             }
-            else if(selected){
+            else{
+              selected = false;
               selectedBlock2 = squares[y][x];
-              int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();
+              int tempx = selectedBlock1.getCor().getX();
+              int tempy = selectedBlock1.getCor().getY();
+              int tempx1 = selectedBlock2.getCor().getX();
+              int tempy1 = selectedBlock2.getCor().getY();
 
               
-              selectedBlock1.getCor().setX(y);
-              selectedBlock1.getCor().setY(x);
+              selectedBlock1.getCor().setX(tempx1);
+              selectedBlock1.getCor().setY(tempy1);
               selectedBlock2.getCor().setX(tempx);
               selectedBlock2.getCor().setY(tempy);
 
@@ -185,7 +189,6 @@ public class Grid extends JFrame implements MouseListener{
               selectedBlock2 = null;
               //  System.out.println(hasMatch(selectedBlock,squares[x][y]));
               //change selected with second click and check chain
-              selected = false; 
             }
           }
         }
