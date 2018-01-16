@@ -19,6 +19,7 @@ public class Grid extends JFrame implements MouseListener{
   private JLabel agoal;
   private boolean selected = false;
   private Piece selectedBlock;
+  private Piece curBlock;
   private int moves = 20;
   private int score = 0;
   private int goal = 500;
@@ -72,6 +73,33 @@ public class Grid extends JFrame implements MouseListener{
     pane.add(goalPanel);
   }
 
+  public void swap(Piece a, Piece b){
+    curBlock = b;
+    b.setCor(a.getX(),a.getY());
+    a.setCor(b.getX(),a.getY());
+
+    pane.removeAll();
+    
+    Random col = new Random();
+    
+    for(int i = 0; i < squares.length;i++){
+      for (int j = 0; j < squares[i].length;j++) {	
+        Piece blocks = new Piece(col.nextInt(5),j,i);
+        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + blocks.getColor()+ ".png");
+
+        JLabel icons = new JLabel(ic);
+        blocks.setCor(j,i);
+
+        squares[i][j] = blocks;
+        rectangles[i][j] = icons;
+        
+        icons.addMouseListener(this);
+        icons.setBorder(standard);
+
+        pane.add(icons);
+      }
+    }
+  }
   
   public boolean hasMatch(Piece a, Piece b){
     boolean result = false;
@@ -128,7 +156,8 @@ public class Grid extends JFrame implements MouseListener{
               selectedBlock = squares[x][y];
               System.out.println(selectedBlock.getCor());
             } else if(selected){
-              System.out.println(hasMatch(selectedBlock,squares[x][y]));
+              swap(selectedBlock,squares[x][y]);
+              selected = false;
               //change selected with second click and check chain
             }
 
