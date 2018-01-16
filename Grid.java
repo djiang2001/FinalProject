@@ -18,7 +18,8 @@ public class Grid extends JFrame implements MouseListener{
   private JLabel ascore;
   private JLabel agoal;
   private boolean selected = false;
-  private Piece selectedBlock;
+  private Piece selectedBlock1;
+  private Piece selectedBlock2;
   private int moves = 20;
   private int score = 0;
   private int goal = 500;
@@ -121,21 +122,46 @@ public class Grid extends JFrame implements MouseListener{
             System.out.println(squares[x][y].getCor());
             System.out.println(squares[x][y].getColor());
             System.out.println(getMoves());
-            System.out.println("_________________");
-            
+           
             if(!selected){
               selected = true;
-              selectedBlock = squares[x][y];
-              System.out.println(selectedBlock.getCor());
-            } else if(selected){
-              System.out.println(hasMatch(selectedBlock,squares[x][y]));
+              selectedBlock1 = squares[x][y];
+              System.out.println(selectedBlock1.getCor());
+            }
+            else if(selected){
+              selected = false;
+              selectedBlock2 = squares[x][y];
+              int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();
+              selectedBlock1.getCor().setX(x);
+              selectedBlock1.getCor().setY(y);
+              selectedBlock2.getCor().setX(tempx);
+              selectedBlock2.getCor().setY(tempy);
+
+              JLabel tempicon = rectangles[x][y];
+              rectangles[x][y] = rectangles[tempx][tempy];
+              rectangles[tempx][tempy] = tempicon;
+              
+              pane.removeAll();
+              moves = moves - 1;
+              for (int i = 0; i < squares.length; i++){
+                for (int j = 0; j < squares[i].length; j++){
+                  pane.add(rectangles[i][j]);
+                }
+              }
+              pane.add(movePanel);
+              pane.add(scorePanel);
+              pane.add(goalPanel);
+              //  System.out.println(hasMatch(selectedBlock,squares[x][y]));
               //change selected with second click and check chain
             }
 
           } 
         }
       }
+      
     }
+    System.out.println("_________________");
+    pane.revalidate();
   }
       
   
