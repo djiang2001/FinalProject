@@ -146,17 +146,17 @@ public class Grid extends JFrame implements MouseListener{
       for (int y = 0; y < squares.length; y++){
         for (int x = 0; x < squares[y].length; x++){
           if (a == rectangles[x][y]){
-            System.out.println(squares[x][y].getCor());
-            System.out.println(squares[x][y].getColor());
+            System.out.println(squares[y][x].getCor());
+            System.out.println(squares[y][x].getColor());
             //      System.out.println(getMoves());
            
             if(!selected){
               selected = true;
-              selectedBlock1 = squares[x][y];
+              selectedBlock1 = squares[y][x];
               System.out.println(selectedBlock1.getCor());
             }
             else if(selected){
-              selectedBlock2 = squares[x][y];
+              selectedBlock2 = squares[y][x];
               int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();
 
               
