@@ -158,7 +158,7 @@ public class Grid extends JFrame implements MouseListener{
               System.out.println(colorTemp);
             }
             
-            else if(selected){
+            else{
               System.out.println("Current:" + squares[x][y].getColor());
               //System.out.println("Past:" + selectedBlock2.getColor());
               squares[selectedX][selectedY].setColor(squares[x][y].getColor());
@@ -177,7 +177,6 @@ public class Grid extends JFrame implements MouseListener{
 
               pane.removeAll();
               makeGrid();
-
               pane.add(movePanel);
               pane.add(scorePanel);
               pane.add(goalPanel);
@@ -269,7 +268,6 @@ public class Grid extends JFrame implements MouseListener{
                                      (squares[i][j]).getColor()+ ".png");
         
         JLabel icons = new JLabel(ic);
-
         icons.addMouseListener(this);
         icons.setBorder(standard);
         pane.add(icons);
