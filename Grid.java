@@ -164,24 +164,29 @@ public class Grid extends JFrame implements MouseListener{
               squares[selectedX][selectedY].setColor(squares[x][y].getColor());
               //System.out.println("After" + squares[selectedBlock2.getX()][selectedBlock2.getY()].getColor());
               squares[x][y].setColor(colorTemp);
+
+              //JLabel tempicon = rectangles[selectedX][selectedY];
               
-              if (!anyCombo()){
+              // rectangles[selectedX][selectedY] = rectangles[x][y];
+              // rectangles[x][y] = tempicon;
+              
+              if (anyCombo() == false) {
                 squares[x][y].setColor(squares[selectedX][selectedY].getColor());
                 squares[selectedX][selectedY].setColor(colorTemp);
+                // rectangles[x][y] = rectangles[selectedX][selectedY];
+                // rectangles[selectedX][selectedY] = tempicon;
               }
-              
               colorTemp =  null;
               
               //selectedBlock2 = null;
               selected = false;
 
-              pane.removeAll();
+                            
+              removeAll();
               makeGrid();
-
               pane.add(movePanel);
               pane.add(scorePanel);
               pane.add(goalPanel);
-              
               /*selectedBlock2 = squares[y][x];
                 int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();              
               */
@@ -225,7 +230,7 @@ public class Grid extends JFrame implements MouseListener{
       }
     }
     System.out.println("_________________");
-    pane.revalidate();
+    pane.revalidate();        
   }
 
   public boolean anyCombo(){
@@ -265,11 +270,13 @@ public class Grid extends JFrame implements MouseListener{
   public void makeGrid(){
     for (int i = 0; i <squares.length; i++){
       for (int j = 0; j < squares[i].length; j++){
-        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" +
-                                     (squares[i][j]).getColor()+ ".png");
-        
-        JLabel icons = new JLabel(ic);
-        pane.add(icons);
+         ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" +
+                                      (squares[i][j]).getColor()+ ".png");
+         JLabel icons = new JLabel(ic);             
+         icons.addMouseListener(this);
+         icons.setBorder(standard);
+         //  JLabel icons = rectangles[i][j];
+         pane.add(icons);
       }
     }
   }
