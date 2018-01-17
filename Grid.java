@@ -174,8 +174,16 @@ public class Grid extends JFrame implements MouseListener{
               
               //selectedBlock2 = null;
               selected = false;
+
+              pane.removeAll();
+              makeGrid();
+
+              pane.add(movePanel);
+              pane.add(scorePanel);
+              pane.add(goalPanel);
+              
               /*selectedBlock2 = squares[y][x];
-                int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();
+                int tempx = selectedBlock1.getCor().getX(); int tempy = selectedBlock1.getCor().getY();              
               */
               
               /* selectedBlock1.public int getField() {
@@ -226,7 +234,7 @@ public class Grid extends JFrame implements MouseListener{
 
   public boolean checkHorizontal(){
     for (int i = 0; i < squares.length; i++){
-      for (int j = 0; j < squares.length; j++){
+      for (int j = 0; j < squares[i].length - 3; j++){
         Piece here = squares[i][j];
         Piece next = squares[i][j+1];
         Piece last = squares[i][j+2];
@@ -240,8 +248,8 @@ public class Grid extends JFrame implements MouseListener{
   }
 
   public boolean checkVertical(){
-    for (int i = 0; i < squares.length; i++){
-      for (int j = 0; j < squares.length; j++){
+    for (int i = 0; i < squares.length - 3; i++){
+      for (int j = 0; j < squares[i].length; j++){
         Piece here = squares[i][j];
         Piece next = squares[i+1][j];
         Piece last = squares[i+2][j];
@@ -254,7 +262,17 @@ public class Grid extends JFrame implements MouseListener{
     return false;
   }
   
-
+  public void makeGrid(){
+    for (int i = 0; i <squares.length; i++){
+      for (int j = 0; j < squares[i].length; j++){
+        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" +
+                                     (squares[i][j]).getColor()+ ".png");
+        
+        JLabel icons = new JLabel(ic);
+        pane.add(icons);
+      }
+    }
+  }
   
   //--MouseListener--//
   public void mouseEntered(MouseEvent e) {
