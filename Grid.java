@@ -193,8 +193,6 @@ public class Grid extends JFrame implements MouseListener{
               }
               
               colorTemp =  null;
-              
-              //selectedBlock2 = null;
               selected = false;
 
               pane.removeAll();
