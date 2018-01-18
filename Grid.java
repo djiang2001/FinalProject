@@ -24,6 +24,7 @@ public class Grid extends JFrame implements MouseListener{
   private int moves = 20;
   private int score = 0;
   private int goal = 500;
+  private ArrayList<Integer> toDestroy = new ArrayList<Integer>();
   private String[] colorHor;
   private String[] colorVert;
   public static Border standard = new LineBorder(Color.black);
@@ -122,9 +123,7 @@ public class Grid extends JFrame implements MouseListener{
       for (int j = 0; j < squares[i].length - 3; j++){
         Piece here = squares[i][j];
         Piece next1 = squares[i][j+1];
-	//  Piece next2 = squares[i][j+2];
-	//Piece next3 = squares[i][j+3];
-	Piece last = squares[i][j+2];
+        Piece last = squares[i][j+2];
 
 	//String colStat = here.getColor();
         if ((here.getColor()).equals(next1.getColor()) &&
@@ -205,6 +204,59 @@ public class Grid extends JFrame implements MouseListener{
     }
     System.out.println("_________________");
     pane.revalidate();
+  }
+
+  public void findChainVertical(){
+    if (anyCombo()){
+      for (int i = 0; i < squares.length; i++){
+        for (int j = 0; j < squares[i].length; j++){
+          Piece here = squares[i][j];
+          Piece twov = squares[i+1][j];
+          Piece threev = squares[i+2][j];
+          Piece fourv = squares[i+3][j];
+          Piece fivev = squares[i+4][j];
+          Piece twoh = squares[i][j+1];
+          Piece threeh = squares[i][j+2];
+          Piece fourh = squares[i][j+1];
+          Piece fiveh = squares[i][j+2];
+          if ((here.getColor()).equals(twov.getColor()) &&
+              (here.getColor()).equals(threev.getColor()) &&
+              (here.getColor()).equals(fourv.getColor()) &&
+              (here.getColor()).equals(fivev.getColor())){
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+1));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+2));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+3));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+4));
+            toDestroy.add(new Integer(j));
+          }
+          else if ((here.getColor()).equals(twov.getColor()) &&
+                   (here.getColor()).equals(threev.getColor()) &&
+                   (here.getColor()).equals(fourv.getColor())){
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+1));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+2));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+3));
+            toDestroy.add(new Integer(j));
+          }
+          else{
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+1));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i+2));
+            toDestroy.add(new Integer(j));
+          }
+        }
+      }
+    }
   }
   
   public void mouseEntered(MouseEvent e) {
