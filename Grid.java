@@ -148,8 +148,7 @@ public class Grid extends JFrame implements MouseListener{
   public void makeGrid(){
     for (int i = 0; i <squares.length; i++){
       for (int j = 0; j < squares[i].length; j++){
-        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" +
-                                     (squares[i][j]).getColor()+ ".png");
+        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i][j]).getColor()+ ".png");
         
         JLabel icons = new JLabel(ic);
         icons.addMouseListener(this);
@@ -191,15 +190,17 @@ public class Grid extends JFrame implements MouseListener{
                 squares[x][y].setColor(squares[selectedX][selectedY].getColor());
                 squares[selectedX][selectedY].setColor(colorTemp);
               }
-              
+
+	      ImageIcon currentIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[x][y]).getColor()+ ".png");
+
+	      ImageIcon prevIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[selectedX][selectedY]).getColor()+ ".png");
+	      
+	      rectangles[x][y].setIcon(currentIcon);
+
+	      rectangles[selectedX][selectedY].setIcon(prevIcon);
               colorTemp =  null;
               selected = false;
 
-              pane.removeAll();
-              makeGrid();
-              pane.add(movePanel);
-              pane.add(scorePanel);
-              pane.add(goalPanel);
               
             }
           }
