@@ -19,6 +19,7 @@ public class Grid extends JFrame implements MouseListener{
   private JLabel agoal;
   private boolean selected = false;
   private String colorTemp;
+  private String comboColor;
   private int selX;
   private int selY;
   private int moves = 20;
@@ -201,6 +202,11 @@ public class Grid extends JFrame implements MouseListener{
 		selected = false;
 
     findChains();
+    // destroyChains();
+    System.out.println(countCombos());
+
+    setMoves(moves - 1);
+    amove.setText("Moves:"+moves);
             }
           }
         }
@@ -337,10 +343,55 @@ public class Grid extends JFrame implements MouseListener{
     findChainHorizontal();
   }
 
-  /*public void destroyChains(){
-    
+   public int countCombos(){
+    int result = 0;
+    for(int i = 0; i < squares.length;i++){
+      for(int j = 0; j < squares[i].length;j++){
+        if(squares[i][j].getColor().equals("black")){
+          result++;
+        }
+      }
+    }
+    return result;
   }
-  */
+  
+
+   public void destroyChains(){
+    Random colors = new Random();
+    int a = 0;
+      while(a < countCombos()){
+        for(int i = 0; i < squares.length; i++){
+          for(int j = 0; j < squares[i].length; j++){
+            if(i == 0){
+              if(squares[i+1][j].getColor().equals("black")){
+                comboColor = squares[i][j].getColor();
+                squares[i][j].setColor(colors.nextInt(5));
+                squares[i+1][j].setColor(comboColor);
+
+               ImageIcon comboNow = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i][j]).getColor()+ ".png");
+
+                ImageIcon comboThen = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i + 1][j]).getColor()+ ".png");
+
+                rectangles[i][j].setIcon(comboNow);
+                rectangles[i+1][j].setIcon(comboThen);
+                
+              }else{
+                comboColor = squares[i][j].getColor();
+                squares[i+1][j].setColor(comboColor);
+                ImageIcon comboNow = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i][j]).getColor()+ ".png");
+
+                ImageIcon comboThen = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i + 1][j]).getColor()+ ".png");
+
+                rectangles[i][j].setIcon(comboNow);
+                rectangles[i+1][j].setIcon(comboThen);
+              }
+            }
+          }
+        }
+      }
+  }
+  
+  
 
   
   public void mouseEntered(MouseEvent e) {

@@ -43,6 +43,10 @@ public class Piece extends JLabel{
 	color = c;
     }
 
+  public void setColor(int i){
+    color = colorColl[i];
+  }
+
     public String toString(){
 	return "";
     }
