@@ -207,7 +207,7 @@ public class Grid extends JFrame implements MouseListener{
   }
 
   public void findChainVertical(){
-    if (anyCombo()){
+    if (checkVertical()){
       for (int i = 0; i < squares.length; i++){
         for (int j = 0; j < squares[i].length; j++){
           Piece here = squares[i][j];
@@ -215,10 +215,6 @@ public class Grid extends JFrame implements MouseListener{
           Piece threev = squares[i+2][j];
           Piece fourv = squares[i+3][j];
           Piece fivev = squares[i+4][j];
-          Piece twoh = squares[i][j+1];
-          Piece threeh = squares[i][j+2];
-          Piece fourh = squares[i][j+1];
-          Piece fiveh = squares[i][j+2];
           if ((here.getColor()).equals(twov.getColor()) &&
               (here.getColor()).equals(threev.getColor()) &&
               (here.getColor()).equals(fourv.getColor()) &&
@@ -253,6 +249,55 @@ public class Grid extends JFrame implements MouseListener{
             toDestroy.add(new Integer(j));
             toDestroy.add(new Integer(i+2));
             toDestroy.add(new Integer(j));
+          }
+        }
+      }
+    }
+  }
+
+  public void findChainHorizontal(){
+    if (checkHorizontal()){
+      for (int i = 0; i < squares.length; i++){
+        for (int j = 0; j < squares[i].length; j++){
+          Piece here = squares[i][j];
+          Piece twoh = squares[i][j+1];
+          Piece threeh = squares[i][j+2];
+          Piece fourh = squares[i][j+1];
+          Piece fiveh = squares[i][j+2];
+          if ((here.getColor()).equals(twoh.getColor()) &&
+              (here.getColor()).equals(threeh.getColor()) &&
+              (here.getColor()).equals(fourh.getColor()) &&
+              (here.getColor()).equals(fiveh.getColor())){
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+1));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+2));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+3));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+4));
+          }
+          else if ((here.getColor()).equals(twoh.getColor()) &&
+                   (here.getColor()).equals(threeh.getColor()) &&
+                   (here.getColor()).equals(fourh.getColor())){
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+1));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+2));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+3));
+          }
+          else {
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+1));
+            toDestroy.add(new Integer(i));
+            toDestroy.add(new Integer(j+2));
           }
         }
       }
