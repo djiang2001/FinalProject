@@ -57,6 +57,10 @@ public class Piece extends JButton{
 	color = c;
     }
 
+  public void setColor(int i){
+    color = colorColl[i];
+  }
+
     public String toString(){
 	return "";
     }

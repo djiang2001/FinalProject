@@ -243,8 +243,7 @@ public class Grid extends JFrame implements MouseListener{
               rectangles[i+3][j].setIcon(icon);
               rectangles[i+4][j].setIcon(icon);
             }
-          }
-	  if( i + 3 < squares.length ){
+          }else if( i + 3 < squares.length ){
             Piece fourv = squares[i+3][j];
             if ((here.getColor()).equals(twov.getColor()) &&
                 (here.getColor()).equals(threev.getColor()) &&
@@ -264,11 +263,11 @@ public class Grid extends JFrame implements MouseListener{
           else{
              if ((here.getColor()).equals(twov.getColor()) &&
                  (here.getColor()).equals(threev.getColor())){
-                   squares[i][j].setColor("black");
-              squares[i+1][j].setColor("black");
-              squares[i+2][j].setColor("black");
-              squares[i+3][j].setColor("black");
-
+		 squares[i][j].setColor("black");
+		 squares[i+1][j].setColor("black");
+		 squares[i+2][j].setColor("black");
+		 squares[i+3][j].setColor("black");
+	      
               rectangles[i][j].setIcon(icon);
               rectangles[i+1][j].setIcon(icon);
               rectangles[i+2][j].setIcon(icon);
@@ -308,7 +307,7 @@ public class Grid extends JFrame implements MouseListener{
               rectangles[i][j+3].setIcon(icon);
               rectangles[i][j+4].setIcon(icon);
             }
-          } 
+          } else
           if (j + 3 < squares[i].length){
             Piece fourh = squares[i][j+3];
             if ((here.getColor()).equals(twoh.getColor()) &&
@@ -390,7 +389,7 @@ public class Grid extends JFrame implements MouseListener{
           }
         }
       }
-  }
+   }
   
   
 
