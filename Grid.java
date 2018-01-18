@@ -19,8 +19,8 @@ public class Grid extends JFrame implements MouseListener{
   private JLabel agoal;
   private boolean selected = false;
   private String colorTemp;
-  private int selectedX;
-  private int selectedY;
+  private int selX;
+  private int selY;
   private int moves = 20;
   private int score = 0;
   private int goal = 500;
@@ -111,6 +111,8 @@ public class Grid extends JFrame implements MouseListener{
     goal = g;
   }
 
+    
+    
   public boolean anyCombo(){
     return (checkHorizontal() || checkVertical()); 
   }
@@ -119,9 +121,13 @@ public class Grid extends JFrame implements MouseListener{
     for (int i = 0; i < squares.length; i++){
       for (int j = 0; j < squares[i].length - 3; j++){
         Piece here = squares[i][j];
-        Piece next = squares[i][j+1];
-        Piece last = squares[i][j+2];
-        if ((here.getColor()).equals(next.getColor()) &&
+        Piece next1 = squares[i][j+1];
+	//  Piece next2 = squares[i][j+2];
+	//Piece next3 = squares[i][j+3];
+	Piece last = squares[i][j+2];
+
+	//String colStat = here.getColor();
+        if ((here.getColor()).equals(next1.getColor()) &&
             (here.getColor()).equals(last.getColor())){
           return true;
         }
@@ -145,19 +151,6 @@ public class Grid extends JFrame implements MouseListener{
     return false;
   }
   
-  public void makeGrid(){
-    for (int i = 0; i <squares.length; i++){
-      for (int j = 0; j < squares[i].length; j++){
-        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i][j]).getColor()+ ".png");
-        
-        JLabel icons = new JLabel(ic);
-        icons.addMouseListener(this);
-        icons.setBorder(standard);
-        pane.add(icons);
-      }
-    }
-  }
-  
   //--MouseListener--//
    public void mouseClicked(MouseEvent e){
     if(moves == 0){
@@ -169,39 +162,42 @@ public class Grid extends JFrame implements MouseListener{
           if (a == rectangles[x][y]){
             System.out.println(squares[x][y].getX());
             System.out.println(squares[x][y].getColor());
-            //      System.out.println(getMoves());
             
             if(!selected){
-              selected = true;
-              colorTemp = squares[x][y].getColor();
-              selectedX = x;
-              selectedY = y;
-              System.out.println(colorTemp);
+		selected = true;
+		colorTemp = squares[x][y].getColor();
+		selX = x;
+		selY = y;
+		System.out.println(colorTemp);
             }
             
             else{
-              System.out.println("Current:" + squares[x][y].getColor());
-              //System.out.println("Past:" + selectedBlock2.getColor());
-              squares[selectedX][selectedY].setColor(squares[x][y].getColor());
-              //System.out.println("After" + squares[selectedBlock2.getX()][selectedBlock2.getY()].getColor());
-              squares[x][y].setColor(colorTemp);
+		System.out.println("Current:" + squares[x][y].getColor());
+		
+		squares[selX][selY].setColor(squares[x][y].getColor());
+		squares[x][y].setColor(colorTemp);
+
+		ImageIcon currentIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[x][y]).getColor()+ ".png");
+		
+		ImageIcon prevIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[selX][selY]).getColor()+ ".png");
+		
+		rectangles[x][y].setIcon(currentIcon);
+		rectangles[selX][selY].setIcon(prevIcon);
               
-              if (!anyCombo()){
-                squares[x][y].setColor(squares[selectedX][selectedY].getColor());
-                squares[selectedX][selectedY].setColor(colorTemp);
-              }
+		if (!anyCombo()){
+		    squares[x][y].setColor(squares[selX][selY].getColor());
+		    squares[selX][selY].setColor(colorTemp);
+		}
 
-	      ImageIcon currentIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[x][y]).getColor()+ ".png");
+		currentIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[x][y]).getColor()+ ".png");
 
-	      ImageIcon prevIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[selectedX][selectedY]).getColor()+ ".png");
+		prevIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[selX][selY]).getColor()+ ".png");
 	      
-	      rectangles[x][y].setIcon(currentIcon);
-
-	      rectangles[selectedX][selectedY].setIcon(prevIcon);
-              colorTemp =  null;
-              selected = false;
-
-              
+		rectangles[x][y].setIcon(currentIcon);
+		rectangles[selX][selY].setIcon(prevIcon);
+		
+		colorTemp =  null;
+		selected = false;
             }
           }
         }
