@@ -1,7 +1,21 @@
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
+import java.awt.*
+import java.swing.border.*
 
-public class Piece extends JLabel{
+    enum PieceColor{
+    BLUE(java.awt.Color.BLUE);
+    GREEN(java.awt.Color.GREEN);
+    YELLOW(java.awt.Color.YELLOW);
+    RED(java.awt.Color.RED);
+    public final java.awt.Color value;
+
+    PieceColor(java.awt.Color value) {this.value = value;}
+
+    private static
+}
+    
+public class Piece extends JButton{
     private String color;
     private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
     private int x;
