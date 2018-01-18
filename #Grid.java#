@@ -337,10 +337,17 @@ public class Grid extends JFrame implements MouseListener{
     findChainHorizontal();
   }
 
-  /*public void destroyChains(){
-    
+  public void destroyChains(){
+    for(int i = squares.length; i >= 0; i++){
+      for(int j = squares[i].length; j >= 0; j++){
+        if(squares[i][j].getColor.equals("black")){
+
+          for(int row = i + 1; row > 0;  )
+        }
+      }
+    }
   }
-  */
+  
 
   
   public void mouseEntered(MouseEvent e) {
