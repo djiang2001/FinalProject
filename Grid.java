@@ -2,12 +2,19 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
-import java.util.ArrayList;
 import java.util.*;
 
-public class Grid extends JFrame implements MouseListener{
+public class Grid extends JFrame implements ActionListener{
+  private final int Rows, Cols;
+  private final Piece[][] board;
+  private final JLabel statusMove;
+  private final JLabel statusGoal;
+  private final JLabel statusScore;
+  private int movesLeft;
+  private int goal;
+  private int score;
   
-  
+  /*
   private static Container pane;
   private Piece[][] squares;
   private JLabel[][] rectangles;
@@ -29,8 +36,17 @@ public class Grid extends JFrame implements MouseListener{
   private String[] colorHor;
   private String[] colorVert;
   public static Border standard = new LineBorder(Color.black);
-  
+  */
   public Grid(){
+    movesLeft = 20;
+    board = new Piece [Rows][Cols];
+    statusMove = new JLabel();
+
+    setTitle("Unblocked");
+    setSize(800,800);
+    setLayout(new BorderLayout());
+    
+    /*
     movePanel = new JPanel();
     scorePanel = new JPanel();
     goalPanel = new JPanel();
@@ -73,7 +89,7 @@ public class Grid extends JFrame implements MouseListener{
     pane.add(movePanel);
     pane.add(scorePanel);
     pane.add(goalPanel);
-
+    */
 
   }
   
