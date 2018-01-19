@@ -28,10 +28,10 @@ Blocks
 ### III
 -Pieces will be destroyed when chained at least 3 (Haven't done)
 
-# IV
+### IV
 -Pieces will drop down
 
-# V 
+### V 
 -When grid is generated, it will check for chains 
 
 ## III. To Be Added Later Features
