@@ -12,7 +12,8 @@ public class Grid extends JFrame implements ActionListener{
   private final JLabel statusScore;
   private int movesLeft;
   private int goal;
-  private int score;
+  private int scores;
+    private boolean isCombo;
   
   /*
   private static Container pane;
@@ -42,10 +43,14 @@ public class Grid extends JFrame implements ActionListener{
     board = new Piece [Rows][Cols];
     statusMove = new JLabel();
 
-    setTitle("Unblocked");
-    setSize(800,800);
-    setLayout(new BorderLayout());
-    
+    this.setTitle("Unblocked");
+    this.setSize(800,800);
+    this.setLayout(new BorderLayout());
+    add(createPiecePanel(),BorderLayout.CENTER);
+    add(createPiecePanel(),BorderLayout.SOUTH);
+    updateStatusPanel();
+
+    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     /*
     movePanel = new JPanel();
     scorePanel = new JPanel();
@@ -93,26 +98,44 @@ public class Grid extends JFrame implements ActionListener{
 
   }
   
-  
-  public boolean hasMatch(Piece a, Piece b){
+    private JPanel createStatusPanel(){
+	JPanel p = new JPanel();
+	p.add(statusMove, BorderLayout.SOUTH);
+	return p;
+    }
+
+    private JPanel createPiecePanel(){
+	JPanel p = new JPanel();
+	p.setLayou(new GridLayout(Rows,Cols));
+	for(int row = 0; row < Rows; row++){
+	    for(int col = 0; col < Cols; col++){
+		Piece piece = new Piece(row,col,PieceColor.randPick());
+		piece.addActionListener(this);
+		board[row][col] = piece;
+		p.add(piece);
+	    }
+	}
+	return p;
+    }
+
+		
+		/*public boolean hasMatch(Piece a, Piece b){
     boolean result = false;
     if(a.getColor().equals(b.getColor())){
       result = true;
     }
     return result;
   }
+  */
   
-  public void fallDown(Piece a ){
-    
-  }
   //-Getters and Setters--//
   
   private int getMoves(){
-    return moves;
+    return movesLeft;
   }
   
   private int getScore(){
-    return score;
+    return scores;
   }
 
   private int getGoal(){
@@ -131,8 +154,6 @@ public class Grid extends JFrame implements ActionListener{
     goal = g;
   }
 
-    
-    
   public boolean anyCombo(){
     return (checkHorizontal() || checkVertical()); 
   }
@@ -169,7 +190,15 @@ public class Grid extends JFrame implements ActionListener{
     return false;
   }
   
-  //--MouseListener--//
+  //--ActionListener--//
+
+    public void actionPerformed(ActionEvent e){
+	pieceSelected((Piece)e.getSource());
+    }
+
+    private void pieceSelected(){
+    }
+    /*
    public void mouseClicked(MouseEvent e){
      if(moves == 0){
        amove.setText("Game Over");
@@ -427,6 +456,7 @@ public class Grid extends JFrame implements ActionListener{
     
   }
   
+    */
   
   public static void main (String[] args){
     Grid game = new Grid();
