@@ -231,7 +231,7 @@ public class Grid extends JFrame implements ActionListener{
   }
     
    public void fallDown(){
-     while (numCombo > 0){
+     while(numCombo > 0){
       for (int i = 0; i < board.length-1; i++){
         for (int j = 0; j < board[i].length; j++){
           if(board[i][j].getRow() == 0 && board[i+1][j].isCombo()){
@@ -281,8 +281,8 @@ public class Grid extends JFrame implements ActionListener{
         selected = false;
         findCombos();
         updateStatusPanel();
-        fallDown();
       }
+      fallDown();
     }  
   }
       private void updateStatusPanel() {
