@@ -150,6 +150,25 @@ public class Grid extends JFrame implements ActionListener{
           Piece here = board[i][j];
           Piece twov = board[i+1][j];
           Piece threev = board[i+2][j];
+          if( i + 2 < board.length ){
+            if (here.equals(twov) &&
+                here.equals(threev)){
+              board[i][j].setCombo(true);
+              board[i+1][j].setCombo(true);
+              board[i+2][j].setCombo(true);
+            }  
+          }
+          if( i + 3 < board.length ){
+            Piece fourv = board[i+3][j];
+            if (here.equals(twov) &&
+                here.equals(threev) &&
+                here.equals(fourv)){
+              board[i][j].setCombo(true);
+              board[i+1][j].setCombo(true);
+              board[i+2][j].setCombo(true);
+              board[i+3][j].setCombo(true);
+            }
+          }
           if( i + 4 < board.length ){
             Piece fourv = board[i+3][j];
             Piece fivev = board[i+4][j];
@@ -164,25 +183,6 @@ public class Grid extends JFrame implements ActionListener{
               board[i+4][j].setCombo(true);
             }
           }
-          if( i + 3 < board.length ){
-            Piece fourv = board[i+3][j];
-            if (here.equals(twov) &&
-                here.equals(threev) &&
-                here.equals(fourv)){
-              board[i][j].setCombo(true);
-              board[i+1][j].setCombo(true);
-              board[i+2][j].setCombo(true);
-              board[i+3][j].setCombo(true);
-            }
-          }
-          else{
-            if (here.equals(twov) &&
-                here.equals(threev)){
-              board[i][j].setCombo(true);
-              board[i+1][j].setCombo(true);
-              board[i+2][j].setCombo(true);
-            }
-          }
         }
       }
     }
@@ -195,6 +195,25 @@ public class Grid extends JFrame implements ActionListener{
           Piece here = board[i][j];
           Piece twoh = board[i][j+1];
           Piece threeh = board[i][j+2];
+          if (j + 2 < board[i].length){
+            if (here.equals(twoh) &&
+                here.equals(threeh)){
+            board[i][j].setCombo(true);
+            board[i][j+1].setCombo(true);
+            board[i][j+2].setCombo(true);
+            }
+          }
+          if (j + 3 < board[i].length){
+            Piece fourh = board[i][j+3];
+            if (here.equals(twoh) &&
+                here.equals(threeh) &&
+                here.equals(fourh)){
+              board[i][j]. setCombo(true);
+              board[i][j+1].setCombo(true);
+              board[i][j+2].setCombo(true);
+              board[i][j+3].setCombo(true);
+            }
+          }
           if (j + 4 < board[i].length){
             Piece fourh = board[i][j+3];
             Piece fiveh = board[i][j+4];
@@ -209,22 +228,6 @@ public class Grid extends JFrame implements ActionListener{
               board[i][j+4].setCombo(true);
             }
           } 
-          if (j + 3 < board[i].length){
-            Piece fourh = board[i][j+3];
-            if (here.equals(twoh) &&
-                here.equals(threeh) &&
-                here.equals(fourh)){
-              board[i][j].setCombo(true);
-              board[i][j+1].setCombo(true);
-              board[i][j+2].setCombo(true);
-              board[i][j+3].setCombo(true);
-            }
-          }
-          else {
-            board[i][j].setCombo(true);
-            board[i][j+1].setCombo(true);
-            board[i][j+2].setCombo(true);
-          }
         }
       }
     }
