@@ -153,9 +153,9 @@ public class Grid extends JFrame implements ActionListener{
           }
           if( i + 3 < board.length ){
             Piece fourv = board[i+3][j];
-            if ((here.getColor()).equals(twov.getColor()) &&
-                (here.getColor()).equals(threev.getColor()) &&
-                (here.getColor()).equals(fourv.getColor())){
+            if (here.equals(twov) &&
+                here.equals(threev) &&
+                here.equals(fourv)){
               board[i][j].setCombo(true);
               board[i+1][j].setCombo(true);
               board[i+2][j].setCombo(true);
@@ -163,8 +163,8 @@ public class Grid extends JFrame implements ActionListener{
             }
           }
           else{
-            if ((here.getColor()).equals(twov.getColor()) &&
-                (here.getColor()).equals(threev.getColor())){
+            if (here.equals(twov) &&
+                here.equals(threev)){
               board[i][j].setCombo(true);
               board[i+1][j].setCombo(true);
               board[i+2][j].setCombo(true);
@@ -186,9 +186,9 @@ public class Grid extends JFrame implements ActionListener{
             Piece fourh = board[i][j+3];
             Piece fiveh = board[i][j+4];
             if (here.equals(twoh) &&
-                 here.equals(threeh) &&
+                here.equals(threeh) &&
                 here.equals(fourh) &&
-                 here.equals(fiveh)){
+                here.equals(fiveh)){
               board[i][j].setCombo(true);
               board[i][j+1].setCombo(true);
               board[i][j+2].setCombo(true);
@@ -199,8 +199,8 @@ public class Grid extends JFrame implements ActionListener{
           if (j + 3 < board[i].length){
             Piece fourh = board[i][j+3];
             if (here.equals(twoh) &&
-                 here.equals(threeh) &&
-                  here.equals(fourh)){
+                here.equals(threeh) &&
+                here.equals(fourh)){
               board[i][j].setCombo(true);
               board[i][j+1].setCombo(true);
               board[i][j+2].setCombo(true);
