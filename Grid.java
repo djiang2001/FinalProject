@@ -14,7 +14,7 @@ public class Grid extends JFrame implements ActionListener{
   private boolean selected = false;
   private int selX;
   private int selY;
-  private String colorTemp;
+  private PieceColor colorTemp;
   
   /*
     private static Container pane;
@@ -114,8 +114,8 @@ public class Grid extends JFrame implements ActionListener{
         Piece last = board[i][j+2];
 
         //String colStat = here.getColor();
-        if ((here.getColor()).equals(next1.getColor()) &&
-            (here.getColor()).equals(last.getColor())){
+        if (here.equals(next1) &&
+            here.equals(last)){
           return true;
         }
       }
@@ -129,8 +129,8 @@ public class Grid extends JFrame implements ActionListener{
         Piece here = board[i][j];
         Piece next = board[i+1][j];
         Piece last = board[i+2][j];
-        if ((here.getColor()).equals(next.getColor()) &&
-            (here.getColor()).equals(last.getColor())){
+        if (here.equals(next) &&
+            here.equals(last)){
           return true;
         }
       }
@@ -148,7 +148,7 @@ public class Grid extends JFrame implements ActionListener{
     if(movesLeft > 0){
       if(!selected){
         selected = true;
-          colorTemp = p.getColor();
+        colorTemp = p.getColor();
         selX = p.getRow();
         selY = p.getCol();
         System.out.println(colorTemp);
