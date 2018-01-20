@@ -5,127 +5,126 @@ import javax.swing.border.*;
 import java.util.*;
 
 public class Grid extends JFrame implements ActionListener{
-  private final int Rows, Cols;
+  private final int Rows = 10, Cols = 10;
   private final Piece[][] board;
-  private final JLabel statusMove;
-  private final JLabel statusGoal;
-  private final JLabel statusScore;
+  private final JLabel status;
   private int movesLeft;
   private int goal;
   private int scores;
-    private boolean isCombo;
   
   /*
-  private static Container pane;
-  private Piece[][] squares;
-  private JLabel[][] rectangles;
-  private JPanel movePanel;
-  private JPanel scorePanel;
-  private JPanel goalPanel;
-  private JLabel amove;
-  private JLabel ascore;
-  private JLabel agoal;
-  private boolean selected = false;
-  private String colorTemp;
-  private String comboColor;
-  private int selX;
-  private int selY;
-  private int moves = 20;
-  private int score = 0;
-  private int goal = 500;
-  private ArrayList<Integer> toDestroy = new ArrayList<Integer>();
-  private String[] colorHor;
-  private String[] colorVert;
-  public static Border standard = new LineBorder(Color.black);
+    private static Container pane;
+    private Piece[][] squares;
+    private JLabel[][] rectangles;
+    private JPanel movePanel;
+    private JPanel scorePanel;
+    private JPanel goalPanel;
+    private JLabel amove;
+    private JLabel ascore;
+    private JLabel agoal;
+    private boolean selected = false;
+    private String colorTemp;
+    private String comboColor;
+    private int selX;
+    private int selY;
+    private int moves = 20;
+    private int score = 0;
+    private int goal = 500;
+    private ArrayList<Integer> toDestroy = new ArrayList<Integer>();
+    private String[] colorHor;
+    private String[] colorVert;
+    public static Border standard = new LineBorder(Color.black);
   */
   public Grid(){
     movesLeft = 20;
+    scores = 0;
     board = new Piece [Rows][Cols];
-    statusMove = new JLabel();
+    status = new JLabel();
+
 
     this.setTitle("Unblocked");
     this.setSize(800,800);
     this.setLayout(new BorderLayout());
     add(createPiecePanel(),BorderLayout.CENTER);
-    add(createPiecePanel(),BorderLayout.SOUTH);
+    add(createStatusPanel(),BorderLayout.SOUTH);
     updateStatusPanel();
 
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     /*
-    movePanel = new JPanel();
-    scorePanel = new JPanel();
-    goalPanel = new JPanel();
-    amove = new JLabel("Moves:"+moves);
-    ascore = new JLabel("Score:"+score);
-    agoal = new JLabel("Goal:"+goal);
-    movePanel.add(amove,BorderLayout.SOUTH);
-    scorePanel.add(ascore,BorderLayout.SOUTH);
-    goalPanel.add(agoal,BorderLayout.SOUTH);
-    this.setTitle("Unblocked");
-    this.setSize(800,900);//Creates a JFrame size 800 by 900
-    this.setLocation(550,60);//Sets the location at 550, 60
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+      movePanel = new JPanel();
+      scorePanel = new JPanel();
+      goalPanel = new JPanel();
+      amove = new JLabel("Moves:"+moves);
+      ascore = new JLabel("Score:"+score);
+      agoal = new JLabel("Goal:"+goal);
+      movePanel.add(amove,BorderLayout.SOUTH);
+      scorePanel.add(ascore,BorderLayout.SOUTH);
+      goalPanel.add(agoal,BorderLayout.SOUTH);
+      this.setTitle("Unblocked");
+      this.setSize(800,900);//Creates a JFrame size 800 by 900
+      this.setLocation(550,60);//Sets the location at 550, 60
+      this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     
-    pane = this.getContentPane();
-    pane.setLayout(new GridLayout(11,10));
+      pane = this.getContentPane();
+      pane.setLayout(new GridLayout(11,10));
     
-    Random col = new Random();
+      Random col = new Random();
     
-    squares = new Piece[10][10];
-    rectangles = new JLabel[10][10];
+      squares = new Piece[10][10];
+      rectangles = new JLabel[10][10];
     
-    for(int i = 0; i < squares.length;i++){
+      for(int i = 0; i < squares.length;i++){
       for (int j = 0; j < squares[i].length;j++) {	
-        Piece blocks = new Piece(col.nextInt(5),j,i);
-        ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + blocks.getColor()+ ".png");
+      Piece blocks = new Piece(col.nextInt(5),j,i);
+      ImageIcon ic = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + blocks.getColor()+ ".png");
         
-        JLabel icons = new JLabel(ic);
+      JLabel icons = new JLabel(ic);
         
-        squares[i][j] = blocks;
-        rectangles[i][j] = icons;
+      squares[i][j] = blocks;
+      rectangles[i][j] = icons;
         
-        icons.addMouseListener(this);
-        icons.setBorder(standard);
+      icons.addMouseListener(this);
+      icons.setBorder(standard);
         
-        pane.add(icons);
+      pane.add(icons);
       }
-    }
+      }
 
-    pane.add(movePanel);
-    pane.add(scorePanel);
-    pane.add(goalPanel);
+      pane.add(movePanel);
+      pane.add(scorePanel);
+      pane.add(goalPanel);
     */
 
   }
   
-    private JPanel createStatusPanel(){
-	JPanel p = new JPanel();
-	p.add(statusMove, BorderLayout.SOUTH);
-	return p;
-    }
+  private JPanel createStatusPanel(){
+    JPanel p = new JPanel();
+    p.add(status, BorderLayout.SOUTH);
+    return p;
+  }
 
-    private JPanel createPiecePanel(){
-	JPanel p = new JPanel();
-	p.setLayou(new GridLayout(Rows,Cols));
-	for(int row = 0; row < Rows; row++){
+  private JPanel createPiecePanel(){
+    JPanel p = new JPanel();
+    p.setLayout(new GridLayout(Rows,Cols));
+    for(int row = 0; row < Rows; row++){
 	    for(int col = 0; col < Cols; col++){
-		Piece piece = new Piece(row,col,PieceColor.randPick());
-		piece.addActionListener(this);
-		board[row][col] = piece;
-		p.add(piece);
+        Piece piece = new Piece(row,col,PieceColor.randPick());
+        piece.addActionListener(this);
+        board[row][col] = piece;
+        p.add(piece);
 	    }
-	}
-	return p;
     }
+    return p;
+  }
 
 		
-		/*public boolean hasMatch(Piece a, Piece b){
+  /*public boolean hasMatch(Piece a, Piece b){
     boolean result = false;
     if(a.getColor().equals(b.getColor())){
-      result = true;
+    result = true;
     }
     return result;
-  }
+    }
   */
   
   //-Getters and Setters--//
@@ -143,11 +142,11 @@ public class Grid extends JFrame implements ActionListener{
   }
   
   private void setScore(int s){
-    score = s;
+    scores = s;
   }
   
   private void setMoves(int m){
-    moves = m;
+    movesLeft = m;
   }
   
   private void setGoal(int g){
@@ -159,13 +158,13 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public boolean checkHorizontal(){
-    for (int i = 0; i < squares.length; i++){
-      for (int j = 0; j < squares[i].length - 3; j++){
-        Piece here = squares[i][j];
-        Piece next1 = squares[i][j+1];
-        Piece last = squares[i][j+2];
+    for (int i = 0; i < board.length; i++){
+      for (int j = 0; j < board[i].length - 3; j++){
+        Piece here = board[i][j];
+        Piece next1 = board[i][j+1];
+        Piece last = board[i][j+2];
 
-	//String colStat = here.getColor();
+        //String colStat = here.getColor();
         if ((here.getColor()).equals(next1.getColor()) &&
             (here.getColor()).equals(last.getColor())){
           return true;
@@ -176,11 +175,11 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public boolean checkVertical(){
-    for (int i = 0; i < squares.length - 3; i++){
-      for (int j = 0; j < squares[i].length; j++){
-        Piece here = squares[i][j];
-        Piece next = squares[i+1][j];
-        Piece last = squares[i+2][j];
+    for (int i = 0; i < board.length - 3; i++){
+      for (int j = 0; j < board[i].length; j++){
+        Piece here = board[i][j];
+        Piece next = board[i+1][j];
+        Piece last = board[i+2][j];
         if ((here.getColor()).equals(next.getColor()) &&
             (here.getColor()).equals(last.getColor())){
           return true;
@@ -191,13 +190,26 @@ public class Grid extends JFrame implements ActionListener{
   }
   
   //--ActionListener--//
+  
+  @Override
+  public void actionPerformed(ActionEvent e){
+    /*    if(movesLeft == 0){
+      statusMove.setText("GameOver")
+        } else {
+      Piece p = (Piece) p.getSource();
+      if(!selected){
+        selected   = true
+          colorTemp = p.getColor();
+        selX = p.getRow();
+        selY = p.getCol();
+        System.out.println(colorTemp);
+      } else {
+        System.out.println("Current:" + p.getColor());
 
-    public void actionPerformed(ActionEvent e){
-	pieceSelected((Piece)e.getSource());
-    }
+      }
+    }*/
+  }
 
-    private void pieceSelected(){
-    }
     /*
    public void mouseClicked(MouseEvent e){
      if(moves == 0){
@@ -457,6 +469,13 @@ public class Grid extends JFrame implements ActionListener{
   }
   
     */
+      private void updateStatusPanel() {
+	        if (movesLeft==0) {
+            status.setText("Game Over   Score: " + this.getScore() + "   Goal: " + this.getGoal());
+	        } else {
+            status.setText("Moves:" + movesLeft + "  Score: " + this.getScore() + "   Goal: " + this.getGoal());
+	        }
+      }
   
   public static void main (String[] args){
     Grid game = new Grid();

@@ -24,6 +24,8 @@ public class Piece extends JButton{
   public static final Border standard = new LineBorder(Color.black);
   private PieceColor color;
   public final int row, col;
+  private boolean isCombo;
+  private ImageIcon icon;
   /*private String color;
     private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
     private int x;
@@ -35,6 +37,9 @@ public class Piece extends JButton{
       this.col = col;
       setBorder(standard);
       setColor(color);
+      icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + color + ".png");
+      this.setIcon(icon);
+      this.setCombo(false);
     }
   
  //-------------------Getters and Setters--------------------
@@ -45,12 +50,27 @@ public class Piece extends JButton{
   
   public void setColor(PieceColor color){
     this.color = color;
-    this.setBackground(this.color.value);
+    icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + color + ".png");
+    this.setIcon(icon);
+  }
+
+  public int getRow(){
+    return row;
+  }
+
+  public int getCol(){
+    return col;
+  }
+
+  public void setCombo(boolean b){
+    isCombo = b;
   }
 
   public boolean equals(Piece other){
     return this.getColor().value == other.getColor().value;
   }
+
+
   /*
     public int getX(){
 	return x;
