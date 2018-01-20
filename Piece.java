@@ -61,6 +61,10 @@ public class Piece extends JButton{
     isCombo = b;
   }
 
+  public boolean isCombo(){
+    return isCombo;
+  }
+  
   public boolean equals(Piece other){
     return this.getColor().value == other.getColor().value;
   }

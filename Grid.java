@@ -90,8 +90,7 @@ public class Grid extends JFrame implements ActionListener{
         Piece here = board[i][j];
         Piece next1 = board[i][j+1];
         Piece last = board[i][j+2];
-
-        //String colStat = here.getColor();
+        
         if (here.equals(next1) &&
             here.equals(last)){
           return true;
@@ -116,18 +115,108 @@ public class Grid extends JFrame implements ActionListener{
     return false;
   }
 
-  /*  public boolean anyMissing(){
+   public boolean anyMissing(){
+    boolean result = false;
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length; j++){
-        if (board[i][j].getColor() == BLACK){
-          return true;
+        result = board[i][j].isCombo() || result;
+      }
+    }
+    return result; 
+  }
+
+  public void findCombos(){
+    rowCombo();
+    colCombo();
+  }
+
+  public void rowCombo(){
+    if (checkVertical()){
+      for (int i = 0; i < board.length-3; i++){
+        for (int j = 0; j < board[i].length; j++){
+          Piece here = board[i][j];
+          Piece twov = board[i+1][j];
+          Piece threev = board[i+2][j];
+          if( i + 4 < board.length ){
+            Piece fourv = board[i+3][j];
+            Piece fivev = board[i+4][j];
+            if ((here.getColor()).equals(twov.getColor()) &&
+                (here.getColor()).equals(threev.getColor()) &&
+                (here.getColor()).equals(fourv.getColor()) &&
+                (here.getColor()).equals(fivev.getColor())){
+              board[i][j].setCombo(true);
+              board[i+1][j].setCombo(true);
+              board[i+2][j].setCombo(true);
+              board[i+3][j].setCombo(true);
+              board[i+4][j].setCombo(true);
+            }
+          }
+          if( i + 3 < board.length ){
+            Piece fourv = board[i+3][j];
+            if ((here.getColor()).equals(twov.getColor()) &&
+                (here.getColor()).equals(threev.getColor()) &&
+                (here.getColor()).equals(fourv.getColor())){
+              board[i][j].setCombo(true);
+              board[i+1][j].setCombo(true);
+              board[i+2][j].setCombo(true);
+              board[i+3][j].setCombo(true);
+            }
+          }
+          else{
+            if ((here.getColor()).equals(twov.getColor()) &&
+                (here.getColor()).equals(threev.getColor())){
+              board[i][j].setCombo(true);
+              board[i+1][j].setCombo(true);
+              board[i+2][j].setCombo(true);
+            }
+          }
         }
       }
     }
-    return false; 
   }
-  */
-  
+
+  public void colCombo(){
+    if (checkHorizontal()){
+      for (int i = 0; i < board.length; i++){
+        for (int j = 0; j < board[i].length-3; j++){
+          Piece here = board[i][j];
+          Piece twoh = board[i][j+1];
+          Piece threeh = board[i][j+2];
+          if (j + 4 < board[i].length){
+            Piece fourh = board[i][j+3];
+            Piece fiveh = board[i][j+4];
+            if ((here.equals(twoh)) &&
+                 (here.equals(threeh)) &&
+                (here.getColor()).equals(fourh.getColor()) &&
+                 (here.getColor()).equals(fiveh.getColor())){
+              board[i][j].setCombo(true);
+              board[i][j+1].setCombo(true);
+              board[i][j+2].setCombo(true);
+              board[i][j+3].setCombo(true);
+              board[i][j+4].setCombo(true);
+            }
+          } 
+          if (j + 3 < board[i].length){
+            Piece fourh = board[i][j+3];
+            if ((here.getColor()).equals(twoh.getColor()) &&
+                (here.getColor()).equals(threeh.getColor()) &&
+                (here.getColor()).equals(fourh.getColor())){
+              board[i][j].setCombo(true);
+              board[i][j+1].setCombo(true);
+              board[i][j+2].setCombo(true);
+              board[i][j+3].setCombo(true);
+            }
+          }
+          else {
+            board[i][j].setCombo(true);
+            board[i][j+1].setCombo(true);
+            board[i][j+2].setCombo(true);
+          }
+        }
+      }
+    }
+  }
+    
   /*  public void fallDown(){
     while (anyMissing()){
       for (int i = 0; i < board.length-1; i++){
@@ -144,23 +233,6 @@ public class Grid extends JFrame implements ActionListener{
     }
   }
   */
-
-  /*  public void destroy(){
-    if (anyCombo()){
-      for (int i = 0; i < board.length; i++){
-        for (int j = 0; j < board[i].length; j++){
-          if (board[i][j].equals(board[i][j+1]) &&
-              board[i][j].equals(board[i][j+2]) &&
-              j + 3 < board[i].length){
-            board[i][j].setColor(null);
-            board[i][j+1].setColor(null);
-            board[i][j+1].setColor(null);
-          }
-        }
-      }
-    }
-    }*/
-  
   //--ActionListener--//
   
   @Override
@@ -169,6 +241,7 @@ public class Grid extends JFrame implements ActionListener{
     Piece p = (Piece) e.getSource();
     System.out.println(p.getColor());
     System.out.println(p.getRow());
+    System.out.println(p.isCombo());
     // fallDown();
     if(movesLeft > 0){
       if(!selected){
@@ -187,270 +260,11 @@ public class Grid extends JFrame implements ActionListener{
         movesLeft -= 1;
         }
         selected = false;
+        findCombos();
         updateStatusPanel();
       }
     }  
   }
-
-    /*
-   public void mouseClicked(MouseEvent e){
-     if(moves == 0){
-       amove.setText("Game Over");
-     }else{
-       JLabel a = (JLabel) e.getSource();
-       for (int y = 0; y < squares.length; y++){
-         for (int x = 0; x < squares[y].length; x++){
-           if (a == rectangles[x][y]){
-             System.out.println(squares[x][y].getX());
-             System.out.println(squares[x][y].getColor());
-            
-             if(!selected){
-               selected = true;
-               colorTemp = squares[x][y].getColor();
-               selX = x;
-               selY = y;
-               System.out.println(colorTemp);
-             }
-            
-             else{
-               System.out.println("Current:" + squares[x][y].getColor());
-		
-               squares[selX][selY].setColor(squares[x][y].getColor());
-               squares[x][y].setColor(colorTemp);
-
-               ImageIcon currentIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[x][y]).getColor()+ ".png");
-		
-               ImageIcon prevIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[selX][selY]).getColor()+ ".png");
-		
-               rectangles[x][y].setIcon(currentIcon);
-               rectangles[selX][selY].setIcon(prevIcon);
-              
-               if (!anyCombo()){
-                 squares[x][y].setColor(squares[selX][selY].getColor());
-                 squares[selX][selY].setColor(colorTemp);
-               }
-
-		currentIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[x][y]).getColor()+ ".png");
-
-		prevIcon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[selX][selY]).getColor()+ ".png");
-	      
-		rectangles[x][y].setIcon(currentIcon);
-		rectangles[selX][selY].setIcon(prevIcon);
-		
-		colorTemp =  null;
-		selected = false;
-
-    findChains();
-    // destroyChains();
-    System.out.println(countCombos());
-
-    setMoves(moves - 1);
-    amove.setText("Moves:"+moves);
-            }
-          }
-        }
-      }
-    }
-    System.out.println("_________________");
-    pane.revalidate();
-  }
-
-  public void findChainVertical(){
-    ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + "black"+ ".png");
-    if (checkVertical()){
-      for (int i = 0; i < squares.length-3; i++){
-        for (int j = 0; j < squares[i].length; j++){
-          Piece here = squares[i][j];
-          Piece twov = squares[i+1][j];
-          Piece threev = squares[i+2][j];
-          if( i + 4 < squares.length ){
-            Piece fourv = squares[i+3][j];
-            Piece fivev = squares[i+4][j];
-            if ((here.getColor()).equals(twov.getColor()) &&
-                (here.getColor()).equals(threev.getColor()) &&
-                (here.getColor()).equals(fourv.getColor()) &&
-                (here.getColor()).equals(fivev.getColor())){
-              squares[i][j].setColor("black");
-              squares[i+1][j].setColor("black");
-              squares[i+2][j].setColor("black");
-              squares[i+3][j].setColor("black");
-              squares[i+4][j].setColor("black");
-
-              rectangles[i][j].setIcon(icon);
-              rectangles[i+1][j].setIcon(icon);
-              rectangles[i+2][j].setIcon(icon);
-              rectangles[i+3][j].setIcon(icon);
-              rectangles[i+4][j].setIcon(icon);
-            }
-          }
-	  if( i + 3 < squares.length ){
-            Piece fourv = squares[i+3][j];
-            if ((here.getColor()).equals(twov.getColor()) &&
-                (here.getColor()).equals(threev.getColor()) &&
-                (here.getColor()).equals(fourv.getColor())){
-                            squares[i][j].setColor("black");
-              squares[i][j].setColor("black");
-              squares[i+1][j].setColor("black");
-              squares[i+2][j].setColor("black");
-              squares[i+3][j].setColor("black");
-
-              rectangles[i][j].setIcon(icon);
-              rectangles[i+1][j].setIcon(icon);
-              rectangles[i+2][j].setIcon(icon);
-              rectangles[i+3][j].setIcon(icon);
-            }
-          }
-          else{
-             if ((here.getColor()).equals(twov.getColor()) &&
-                 (here.getColor()).equals(threev.getColor())){
-                   squares[i][j].setColor("black");
-              squares[i+1][j].setColor("black");
-              squares[i+2][j].setColor("black");
-              squares[i+3][j].setColor("black");
-
-              rectangles[i][j].setIcon(icon);
-              rectangles[i+1][j].setIcon(icon);
-              rectangles[i+2][j].setIcon(icon);
-              rectangles[i+3][j].setIcon(icon);
-             }
-          }
-        }
-      }
-    }
-  }
-
-
-  public void findChainHorizontal(){
-    ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + "black"+ ".png");
-    if (checkHorizontal()){
-      for (int i = 0; i < squares.length; i++){
-        for (int j = 0; j < squares[i].length-3; j++){
-          Piece here = squares[i][j];
-          Piece twoh = squares[i][j+1];
-          Piece threeh = squares[i][j+2];
-          if (j + 4 < squares[i].length){
-            Piece fourh = squares[i][j+3];
-            Piece fiveh = squares[i][j+4];
-            if ((here.getColor()).equals(twoh.getColor()) &&
-                (here.getColor()).equals(threeh.getColor()) &&
-                (here.getColor()).equals(fourh.getColor()) &&
-                (here.getColor()).equals(fiveh.getColor())){
-              squares[i][j].setColor("black");
-              squares[i][j+1].setColor("black");
-              squares[i][j+2].setColor("black");
-              squares[i][j+3].setColor("black");
-              squares[i][j+4].setColor("black");
-
-              rectangles[i][j].setIcon(icon);
-              rectangles[i][j+1].setIcon(icon);
-              rectangles[i][j+2].setIcon(icon);
-              rectangles[i][j+3].setIcon(icon);
-              rectangles[i][j+4].setIcon(icon);
-            }
-          } 
-          if (j + 3 < squares[i].length){
-            Piece fourh = squares[i][j+3];
-            if ((here.getColor()).equals(twoh.getColor()) &&
-                (here.getColor()).equals(threeh.getColor()) &&
-                (here.getColor()).equals(fourh.getColor())){
-              squares[i][j].setColor("black");
-              squares[i][j+1].setColor("black");
-              squares[i][j+2].setColor("black");
-              squares[i][j+3].setColor("black");
-
-              rectangles[i][j].setIcon(icon);
-              rectangles[i][j+1].setIcon(icon);
-              rectangles[i][j+2].setIcon(icon);
-              rectangles[i][j+3].setIcon(icon);
-            }
-          }
-          else {
-              squares[i][j].setColor("black");
-              squares[i][j+1].setColor("black");
-              squares[i][j+2].setColor("black");
-
-              rectangles[i][j].setIcon(icon);
-              rectangles[i][j+1].setIcon(icon);
-              rectangles[i][j+2].setIcon(icon);
-          }
-        }
-      }
-    }
-  }
-
-  public void findChains(){
-    findChainVertical();
-    findChainHorizontal();
-  }
-
-   public int countCombos(){
-    int result = 0;
-    for(int i = 0; i < squares.length;i++){
-      for(int j = 0; j < squares[i].length;j++){
-        if(squares[i][j].getColor().equals("black")){
-          result++;
-        }
-      }
-    }
-    return result;
-  }
-  
-
-   public void destroyChains(){
-    Random colors = new Random();
-    int a = 0;
-      while(a < countCombos()){
-        for(int i = 0; i < squares.length; i++){
-          for(int j = 0; j < squares[i].length; j++){
-            if(i == 0){
-              if(squares[i+1][j].getColor().equals("black")){
-                comboColor = squares[i][j].getColor();
-                squares[i][j].setColor(colors.nextInt(5));
-                squares[i+1][j].setColor(comboColor);
-
-               ImageIcon comboNow = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i][j]).getColor()+ ".png");
-
-                ImageIcon comboThen = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i + 1][j]).getColor()+ ".png");
-
-                rectangles[i][j].setIcon(comboNow);
-                rectangles[i+1][j].setIcon(comboThen);
-                
-              }else{
-                comboColor = squares[i][j].getColor();
-                squares[i+1][j].setColor(comboColor);
-                ImageIcon comboNow = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i][j]).getColor()+ ".png");
-
-                ImageIcon comboThen = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + (squares[i + 1][j]).getColor()+ ".png");
-
-                rectangles[i][j].setIcon(comboNow);
-                rectangles[i+1][j].setIcon(comboThen);
-              }
-            }
-          }
-        }
-      }
-  }
-  
-  
-
-  
-  public void mouseEntered(MouseEvent e) {
-    
-  }
-  
-  public void mouseExited(MouseEvent e) {
-    
-  }
-  
-  public void mousePressed(MouseEvent e) {
-    
-  }
-  
-  public void mouseReleased(MouseEvent e) {
-    
-  }
-  
-    */
       private void updateStatusPanel() {
 	        if (movesLeft==0) {
             status.setText("Game Over   Score: " + this.getScore() + "   Goal: " + this.getGoal());
