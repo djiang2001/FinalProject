@@ -8,8 +8,7 @@ import javax.swing.border.*;
     GREEN(java.awt.Color.GREEN),
     YELLOW(java.awt.Color.YELLOW),
     RED(java.awt.Color.RED),
-    ORANGE(java.awt.Color.ORANGE),
-    BLACK(java.awt.Color.BLACK);
+    ORANGE(java.awt.Color.ORANGE);
   
   public final java.awt.Color value;
     
