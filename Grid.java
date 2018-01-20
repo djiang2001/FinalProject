@@ -242,6 +242,9 @@ public class Grid extends JFrame implements ActionListener{
             board[i+1][j].setCombo(false);
             numCombo -= 1;
             board[i][j].setColor(PieceColor.randPick());
+            board[i][j].setCombo(false);
+            numCombo -= 1;
+            scores += 30;
           }
           else{
             if(board[i+1][j].isCombo()){
@@ -251,6 +254,7 @@ public class Grid extends JFrame implements ActionListener{
               board[i+1][j].setCombo(false);
               numCombo -= 1;
               System.out.println(numCombo);
+              scores += 30;
             }
           }
         }
