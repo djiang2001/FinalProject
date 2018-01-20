@@ -140,10 +140,10 @@ public class Grid extends JFrame implements ActionListener{
           if( i + 4 < board.length ){
             Piece fourv = board[i+3][j];
             Piece fivev = board[i+4][j];
-            if ((here.getColor()).equals(twov.getColor()) &&
-                (here.getColor()).equals(threev.getColor()) &&
-                (here.getColor()).equals(fourv.getColor()) &&
-                (here.getColor()).equals(fivev.getColor())){
+            if (here.equals(twov) &&
+                here.equals(threev) &&
+                here.equals(fourv) &&
+                here.equals(fivev)){
               board[i][j].setCombo(true);
               board[i+1][j].setCombo(true);
               board[i+2][j].setCombo(true);
@@ -185,10 +185,10 @@ public class Grid extends JFrame implements ActionListener{
           if (j + 4 < board[i].length){
             Piece fourh = board[i][j+3];
             Piece fiveh = board[i][j+4];
-            if ((here.equals(twoh)) &&
-                 (here.equals(threeh)) &&
-                (here.getColor()).equals(fourh.getColor()) &&
-                 (here.getColor()).equals(fiveh.getColor())){
+            if (here.equals(twoh) &&
+                 here.equals(threeh) &&
+                here.equals(fourh) &&
+                 here.equals(fiveh)){
               board[i][j].setCombo(true);
               board[i][j+1].setCombo(true);
               board[i][j+2].setCombo(true);
@@ -198,9 +198,9 @@ public class Grid extends JFrame implements ActionListener{
           } 
           if (j + 3 < board[i].length){
             Piece fourh = board[i][j+3];
-            if ((here.getColor()).equals(twoh.getColor()) &&
-                (here.getColor()).equals(threeh.getColor()) &&
-                (here.getColor()).equals(fourh.getColor())){
+            if (here.equals(twoh) &&
+                 here.equals(threeh) &&
+                  here.equals(fourh)){
               board[i][j].setCombo(true);
               board[i][j+1].setCombo(true);
               board[i][j+2].setCombo(true);
