@@ -249,6 +249,7 @@ public class Grid extends JFrame implements ActionListener{
               board[i+1][j].setColor(board[i][j].getColor());
               board[i+1][j].setCombo(false);
               numCombo -= 1;
+              System.out.println(numCombo);
             }
         }
       }
@@ -284,8 +285,8 @@ public class Grid extends JFrame implements ActionListener{
         selected = false;
         findCombos();
         updateStatusPanel();
+        fallDown();
       }
-      fallDown();
     }  
   }
       private void updateStatusPanel() {
