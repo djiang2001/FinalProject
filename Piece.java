@@ -17,7 +17,7 @@ import javax.swing.border.*;
   
   private static Random rand = new Random();//helper method for random selection
   public static PieceColor randPick() {
-    return PieceColor.values()[rand.nextInt(PieceColor.values().length)];
+    return PieceColor.values()[rand.nextInt(PieceColor.values().length-1)];
   }
 }
     

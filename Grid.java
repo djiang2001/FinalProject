@@ -188,7 +188,7 @@ public class Grid extends JFrame implements ActionListener{
 
     Piece p = (Piece) e.getSource();
     System.out.println(p.getColor());
-    fallDown();
+    // fallDown();
     if(movesLeft > 0){
       if(!selected){
         selected = true;
@@ -202,7 +202,6 @@ public class Grid extends JFrame implements ActionListener{
         p.setColor(colorTemp);
 
         selected = false;
-        // colorTemp = null;
       }
     }  
   }
