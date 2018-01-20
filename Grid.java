@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.border.*;
 import java.util.*;
+import java.lang.*;
 
 public class Grid extends JFrame implements ActionListener{
   private final int Rows = 10, Cols = 10;
@@ -167,6 +168,7 @@ public class Grid extends JFrame implements ActionListener{
 
     Piece p = (Piece) e.getSource();
     System.out.println(p.getColor());
+    System.out.println(p.getRow());
     // fallDown();
     if(movesLeft > 0){
       if(!selected){
@@ -175,9 +177,11 @@ public class Grid extends JFrame implements ActionListener{
         selX = p.getRow();
         selY = p.getCol();
         System.out.println(colorTemp);
-      } else {
+      } else{
+        boolean bound = ((Math.abs(selX-p.getRow()) == 1 && Math.abs(selY-p.getCol()) == 0) || (Math.abs(selY-p.getCol()) == 1 && Math.abs(selX-p.getRow()) == 0));
         System.out.println("Current:" + p.getColor());
-        if(this.anyCombo()){
+        System.out.println(selX - p.getRow());
+        if(this.anyCombo() && bound) {
         board[selX][selY].setColor(p.getColor());
         p.setColor(colorTemp);
         }
