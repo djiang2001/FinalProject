@@ -263,33 +263,41 @@ public class Grid extends JFrame implements ActionListener{
   public void actionPerformed(ActionEvent e){
     Piece p = (Piece) e.getSource();
     countCombo();
-    System.out.println(p.getColor());
-    System.out.println(p.getRow());
-    System.out.println(p.isCombo());
-    System.out.println(numCombo);
+    // System.out.println(p.getColor());
+    // System.out.println(p.getRow());
+    // System.out.println(p.isCombo());
+    // System.out.println(numCombo);
 
     if(movesLeft > 0){
       if(!selected){
-        selected = true;
-        colorTemp = p.getColor();
-        selX = p.getRow();
-        selY = p.getCol();
-        System.out.println(colorTemp);
+        notSelectedAction(p);
       } else{
-        boolean bound = ((Math.abs(selX-p.getRow()) == 1 && Math.abs(selY-p.getCol()) == 0) || (Math.abs(selY-p.getCol()) == 1 && Math.abs(selX-p.getRow()) == 0));
-        System.out.println("Current:" + p.getColor());
-        System.out.println(selX - p.getRow());
-        if(this.anyCombo() && bound && !p.equals(board[selX][selY])) {
-        board[selX][selY].setColor(p.getColor());
-        p.setColor(colorTemp);
-        movesLeft -= 1;
-        }
+        selectedAction(p);
         selected = false;
         findCombos();
         updateStatusPanel();
         fallDown();
       }
     }  
+  }
+
+  public void notSelectedAction(Piece n){
+    selected = true;
+    colorTemp = n.getColor();
+    selX = n.getRow();
+    selY = n.getCol();
+    System.out.println(colorTemp);
+  }
+
+  public void selectedAction(Piece i){
+    boolean bound = (Math.abs(selX-i.getRow()) <= 1 && Math.abs(selY-i.getCol()) <= 1);// || (Math.abs(selY-i.getCol()) <= 1 && Math.abs(selX-i.getRow()) == 0));
+    System.out.println("Current:" + i.getColor());
+    System.out.println(selX - i.getRow());
+    if(this.anyCombo() && bound && !i.equals(board[selX][selY])) {
+      board[selX][selY].setColor(i.getColor());
+      i.setColor(colorTemp);
+      movesLeft -= 1;
+    }
   }
       private void updateStatusPanel() {
 	        if (movesLeft==0) {
