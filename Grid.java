@@ -137,6 +137,22 @@ public class Grid extends JFrame implements ActionListener{
     }
     return false;
   }
+
+  public void destroy(){
+    if (anyCombo()){
+      for (int i = 0; i < board.length; i++){
+        for (int j = 0; j < board[i].length; j++){
+          if (board[i][j].equals(board[i][j+1]) &&
+              board[i][j].equals(board[i][j+2]) &&
+              j + 3 < board[i].length){
+            board[i][j].setColor(null);
+            board[i][j+1].setColor(null);
+            board[i][j+1].setColor(null);
+          }
+        }
+      }
+    }
+  }
   
   //--ActionListener--//
   
@@ -159,6 +175,7 @@ public class Grid extends JFrame implements ActionListener{
 
         selected = false;
         colorTemp = null;
+        destroy();
       }
     }  
   }
