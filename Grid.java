@@ -184,8 +184,10 @@ public class Grid extends JFrame implements ActionListener{
         if(this.anyCombo() && bound) {
         board[selX][selY].setColor(p.getColor());
         p.setColor(colorTemp);
+        movesLeft -= 1;
         }
         selected = false;
+        updateStatusPanel();
       }
     }  
   }
