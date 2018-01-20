@@ -26,11 +26,6 @@ public class Piece extends JButton{
   public final int row, col;
   private boolean isCombo;
   private ImageIcon icon;
-  /*private String color;
-    private String[] colorColl = {"blue", "green", "yellow", "red", "orange"};
-    private int x;
-    private int y;
-    private ImageIcon icon;*/
   
     public Piece(int row, int col, PieceColor color ){
       this.row = row;
@@ -69,40 +64,6 @@ public class Piece extends JButton{
   public boolean equals(Piece other){
     return this.getColor().value == other.getColor().value;
   }
-
-
-  /*
-    public int getX(){
-	return x;
-    }
-
-    public int getY(){
-	return y;
-    }
-    
-    public String getColor(){
-	return color;
-    }
-    public Icon getIcon(){
-	return icon;
-    }
-
-    public void setX(int xcor){
-	x = xcor;
-    }
-
-    public void setY(int ycor){
-	y = ycor;
-    }
-  
-    public void setColor(String c){
-	color = c;
-    }
-
-  public void setColor(int i){
-    color = colorColl[i];
-  }
-  */
 
     public String toString(){
 	return ""+color + "Block (" + row + "," + col;

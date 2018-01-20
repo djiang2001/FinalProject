@@ -14,7 +14,7 @@ public class Grid extends JFrame implements ActionListener{
   private boolean selected = false;
   private int selX;
   private int selY;
-  private PieceColor colorTemp;
+  private String colorTemp;
   
   /*
     private static Container pane;
