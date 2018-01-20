@@ -37,7 +37,7 @@ public class Piece extends JButton{
       this.col = col;
       setBorder(standard);
       setColor(color);
-      icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + color + ".png");
+      icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.color + ".png");
       this.setIcon(icon);
       this.setCombo(false);
     }
@@ -50,7 +50,7 @@ public class Piece extends JButton{
   
   public void setColor(PieceColor color){
     this.color = color;
-    icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + color + ".png");
+    icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.getColor() + ".png");
     this.setIcon(icon);
   }
 

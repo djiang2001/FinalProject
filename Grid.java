@@ -193,10 +193,10 @@ public class Grid extends JFrame implements ActionListener{
   
   @Override
   public void actionPerformed(ActionEvent e){
-    /*    if(movesLeft == 0){
-      statusMove.setText("GameOver")
-        } else {
-      Piece p = (Piece) p.getSource();
+
+      Piece p = (Piece) e.getSource();
+      System.out.println(p.getColor());
+      /*
       if(!selected){
         selected   = true
           colorTemp = p.getColor();
