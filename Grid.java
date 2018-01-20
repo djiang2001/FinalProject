@@ -16,29 +16,6 @@ public class Grid extends JFrame implements ActionListener{
   private int selY;
   private PieceColor colorTemp;
   
-  /*
-    private static Container pane;
-    private Piece[][] squares;
-    private JLabel[][] rectangles;
-    private JPanel movePanel;
-    private JPanel scorePanel;
-    private JPanel goalPanel;
-    private JLabel amove;
-    private JLabel ascore;
-    private JLabel agoal;
-    private boolean selected = false;
-    private String colorTemp;
-    private String comboColor;
-    private int selX;
-    private int selY;
-    private int moves = 20;
-    private int score = 0;
-    private int goal = 500;
-    private ArrayList<Integer> toDestroy = new ArrayList<Integer>();
-    private String[] colorHor;
-    private String[] colorVert;
-    public static Border standard = new LineBorder(Color.black);
-  */
   public Grid(){
     movesLeft = 20;
     scores = 0;
@@ -138,7 +115,7 @@ public class Grid extends JFrame implements ActionListener{
     return false;
   }
 
-  public boolean anyMissing(){
+  /*  public boolean anyMissing(){
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length; j++){
         if (board[i][j].getColor() == BLACK){
@@ -148,8 +125,9 @@ public class Grid extends JFrame implements ActionListener{
     }
     return false; 
   }
+  */
   
-  public void fallDown(){
+  /*  public void fallDown(){
     while (anyMissing()){
       for (int i = 0; i < board.length-1; i++){
         for (int j = 0; j < board[i].length; j++){
@@ -164,6 +142,7 @@ public class Grid extends JFrame implements ActionListener{
       }
     }
   }
+  */
 
   /*  public void destroy(){
     if (anyCombo()){
@@ -198,9 +177,10 @@ public class Grid extends JFrame implements ActionListener{
         System.out.println(colorTemp);
       } else {
         System.out.println("Current:" + p.getColor());
+        if(this.anyCombo()){
         board[selX][selY].setColor(p.getColor());
         p.setColor(colorTemp);
-
+        }
         selected = false;
       }
     }  

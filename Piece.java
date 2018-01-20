@@ -8,8 +8,7 @@ import javax.swing.border.*;
     GREEN(java.awt.Color.GREEN),
     YELLOW(java.awt.Color.YELLOW),
     RED(java.awt.Color.RED),
-    ORANGE(java.awt.Color.ORANGE),
-    BLACK(java.awt.Color.BLACK);
+    ORANGE(java.awt.Color.ORANGE);
   
   public final java.awt.Color value;
     
@@ -46,7 +45,7 @@ public class Piece extends JButton{
   
   public void setColor(PieceColor color){
     this.color = color;
-    icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.getColor() + ".png");
+    icon = new ImageIcon(System.getProperty("user.dir") + "/blocks/" + color  + ".png");
     this.setIcon(icon);
   }
 
