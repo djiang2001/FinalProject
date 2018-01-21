@@ -14,7 +14,8 @@ public class Main extends JFrame{
 
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-          Grid game = new Grid();
+          main.dispose();
+          Grid.main(null);
         }
       });
 
@@ -28,11 +29,9 @@ public class Main extends JFrame{
     main.add(enter);
     main.pack();
 
-
     enter.setVisible(true);
     // main.add(enter);
     main.setVisible(true);
-    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
 
   public static void main(String[] args){
