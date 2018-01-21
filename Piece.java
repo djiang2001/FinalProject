@@ -9,11 +9,11 @@ import javax.swing.border.*;
     YELLOW(java.awt.Color.YELLOW),
     RED(java.awt.Color.RED),
     ORANGE(java.awt.Color.ORANGE),
-    BLACK(java.awt.Color.BLACK);
-  
-  public final java.awt.Color value;
+    MAGENTA(java.awt.Color.MAGENTA);  
+
+    public final java.awt.Color value;
     
-  PieceColor(java.awt.Color value) { this.value = value; }
+    PieceColor(java.awt.Color value) { this.value = value; }
   
   private static Random rand = new Random();//helper method for random selection
   public static PieceColor randPick() {
@@ -33,7 +33,7 @@ public class Piece extends JButton{
       this.col = col;
       setBorder(standard);
       setColor(color);
-      icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.color + ".png");
+      ImageIcon icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.color + ".png");
       this.setIcon(icon);
       this.setCombo(false);
     }

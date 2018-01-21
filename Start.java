@@ -13,7 +13,7 @@ public class Start extends JFrame{
 
   public Start(){
     pane = this.getContentPane();
-    this.setTitle("Unblocked");
+    this.setTitle("Mission Page");
     this.setSize(600,300);
     this.setLocation(500,50);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -22,6 +22,7 @@ public class Start extends JFrame{
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
           new Main();
+          intro.append("UNBLOCKED!");
           pane.remove(enter);
           pane.revalidate();
         }
@@ -34,7 +35,6 @@ public class Start extends JFrame{
     pane.add(intro);
     pane.add(enter);
     enter.setVisible(false);
-
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
 
