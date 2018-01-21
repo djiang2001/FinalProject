@@ -93,7 +93,7 @@ public class Grid extends JFrame implements ActionListener{
 
   public boolean checkHorizontal(){
     for (int i = 0; i < board.length; i++){
-      for (int j = 0; j < board[i].length - 3; j++){
+      for (int j = 0; j < board[i].length - 2; j++){
         Piece here = board[i][j];
         Piece next1 = board[i][j+1];
         Piece last = board[i][j+2];
@@ -108,7 +108,7 @@ public class Grid extends JFrame implements ActionListener{
 
   public void find3h(){
     for (int i = 0; i < board.length; i++){
-      for (int j = 0; j < board[i].length - 3; j++){
+      for (int j = 0; j < board[i].length - 2; j++){
         Piece here = board[i][j];
         Piece next1 = board[i][j+1];
         Piece last = board[i][j+2];
@@ -123,7 +123,7 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void find3v(){
-    for (int i = 0; i < board.length - 3; i++){
+    for (int i = 0; i < board.length - 2; i++){
       for (int j = 0; j < board[i].length; j++){
         Piece here = board[i][j];
         Piece next = board[i+1][j];
@@ -139,7 +139,7 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public boolean checkVertical(){
-    for (int i = 0; i < board.length - 3; i++){
+    for (int i = 0; i < board.length - 2; i++){
       for (int j = 0; j < board[i].length; j++){
         Piece here = board[i][j];
         Piece next = board[i+1][j];
@@ -178,13 +178,15 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void findCombos(){
+    find3v();
+    find3h();
     rowCombo();
     colCombo();
   }
 
   public void rowCombo(){
     if (checkVertical()){
-      for (int i = 0; i < board.length-2; i++){
+      for (int i = 0; i + 2 < board.length; i++){
         for (int j = 0; j < board[i].length; j++){
           Piece here = board[i][j];
           Piece twov = board[i+1][j];
@@ -229,7 +231,7 @@ public class Grid extends JFrame implements ActionListener{
   public void colCombo(){
     if (checkHorizontal()){
       for (int i = 0; i < board.length; i++){
-        for (int j = 0; j < board[i].length-2; j++){
+        for (int j = 0; j + 2 < board[i].length; j++){
           Piece here = board[i][j];
           Piece twoh = board[i][j+1];
           Piece threeh = board[i][j+2];
@@ -289,13 +291,13 @@ public class Grid extends JFrame implements ActionListener{
               board[i+1][j].setCombo(true);
               board[i+2][j].setCombo(true);
               board[i+3][j].setCombo(true);
-            } else
-              if(board[i][j].getRow() < board[i].length -2 && board[i+1][j].equals(board[i][j]) && board[i+2][j].equals(board[i][j])){
+            }
+            else if(board[i][j].getRow() < board[i].length -2 && board[i+1][j].equals(board[i][j]) && board[i+2][j].equals(board[i][j])){
                 board[i][j].setCombo(true);
                 board[i+1][j].setCombo(true);
                 board[i+2][j].setCombo(true);
-              }else
-                if(board[i][j].getRow() < board[i].length -1 && board[i+1][j].equals(board[i][j])){
+              }
+            else if(board[i][j].getRow() < board[i].length -1 && board[i+1][j].equals(board[i][j])){
                   board[i][j].setCombo(true);
                   board[i+1][j].setCombo(true);
                 } 
