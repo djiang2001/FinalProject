@@ -8,7 +8,8 @@ import javax.swing.border.*;
     GREEN(java.awt.Color.GREEN),
     YELLOW(java.awt.Color.YELLOW),
     RED(java.awt.Color.RED),
-    ORANGE(java.awt.Color.ORANGE);
+    ORANGE(java.awt.Color.ORANGE),
+    BLACK(java.awt.Color.BLACK);
   
   public final java.awt.Color value;
     
@@ -16,7 +17,7 @@ import javax.swing.border.*;
   
   private static Random rand = new Random();//helper method for random selection
   public static PieceColor randPick() {
-    return PieceColor.values()[rand.nextInt(PieceColor.values().length-1)];
+    return PieceColor.values()[rand.nextInt(PieceColor.values().length)];
   }
 }
     

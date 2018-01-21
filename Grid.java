@@ -28,11 +28,14 @@ public class Grid extends JFrame implements ActionListener{
     this.setTitle("Unblocked");
     this.setSize(800,800);
     this.setLayout(new BorderLayout());
+    this.setLocation(500,50);
     add(createPiecePanel(),BorderLayout.CENTER);
     add(createStatusPanel(),BorderLayout.SOUTH);
     updateStatusPanel();
       
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+    fallDown();
   }
 
 
@@ -175,15 +178,13 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void findCombos(){
-    find3h();
-    find3v();
     rowCombo();
     colCombo();
   }
 
   public void rowCombo(){
     if (checkVertical()){
-      for (int i = 0; i < board.length-3; i++){
+      for (int i = 0; i < board.length-2; i++){
         for (int j = 0; j < board[i].length; j++){
           Piece here = board[i][j];
           Piece twov = board[i+1][j];
@@ -228,7 +229,7 @@ public class Grid extends JFrame implements ActionListener{
   public void colCombo(){
     if (checkHorizontal()){
       for (int i = 0; i < board.length; i++){
-        for (int j = 0; j < board[i].length-3; j++){
+        for (int j = 0; j < board[i].length-2; j++){
           Piece here = board[i][j];
           Piece twoh = board[i][j+1];
           Piece threeh = board[i][j+2];
@@ -269,34 +270,45 @@ public class Grid extends JFrame implements ActionListener{
     }
   }
     
-   public void fallDown(){
-     while(numCombo > 0){
-      for (int i = 0; i < board.length-1; i++){
-        for (int j = 0; j < board[i].length; j++){
-          if(board[i][j].getRow() == 0 && board[i+1][j].isCombo()){
-            board[i+1][j].setColor(board[i][j].getColor());
-            board[i+1][j].setCombo(false);
-            numCombo -= 1;
-            board[i][j].setColor(PieceColor.randPick());
-            board[i][j].setCombo(false);
-            numCombo -= 1;
+  public void fallDown(){
+    int counter = 0;
+    int combo = 0;
+    while(counter < 100){
+      counter++;
+      findCombos();
+      for(int i = board.length-1; i >= 0; i--){
+        for(int j = 0; j < board[i].length; j++){
+          if(board[i][j].getRow() != 0 && board[i][j].isCombo()){
+            board[i][j].setColor(board[i-1][j].getColor());
             scores += 30;
-          }
-          else{
-            if(board[i+1][j].isCombo()){
-              board[i][j].setCombo(true);
-              numCombo += 1;
-              board[i+1][j].setColor(board[i][j].getColor());
-              board[i+1][j].setCombo(false);
+            board[i][j].setCombo(false);
+            board[i-1][j].setCombo(true);
+
+            if(board[i][j].getRow() < board[i].length -3 && board[i+1][j].equals(board[i][j]) && board[i+2][j].equals(board[i][j]) && board[i+3][j].equals(board[i][j])){
+              board[i+1][j].setCombo(true);
+              board[i+2][j].setCombo(true);
+              board[i+3][j].setCombo(true);
+            } else
+              if(board[i][j].getRow() < board[i].length -2 && board[i+1][j].equals(board[i][j]) && board[i+2][j].equals(board[i][j])){
+                board[i+1][j].setCombo(true);
+                board[i+2][j].setCombo(true);
+              }else
+                if(board[i][j].getRow() < board[i].length -1 && board[i+1][j].equals(board[i][j])){
+                  board[i+1][j].setCombo(true);
+                } 
+               
+            
+          } else
+            if(board[i][j].getRow() == 0 && board[i][j].isCombo()){
+              board[i][j].setColor(PieceColor.randPick());
+              board[i][j].setCombo(false);
               numCombo -= 1;
-              System.out.println(numCombo);
               scores += 30;
-            }
-          }
+            }         
         }
       }
-     }
-   }
+    }
+  }
   //--ActionListener--//
   
   @Override
@@ -305,8 +317,8 @@ public class Grid extends JFrame implements ActionListener{
     countCombo();
     // System.out.println(p.getColor());
     // System.out.println(p.getRow());
-    // System.out.println(p.isCombo());
-    // System.out.println(numCombo);
+     System.out.println(p.isCombo());
+    System.out.println(numCombo);
 
     if(movesLeft > 0){
       if(!selected){
@@ -333,18 +345,21 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void selectedAction(Piece i){
-    boolean bound = (Math.abs(selX-i.getRow()) <= 1 && Math.abs(selY-i.getCol()) <= 1 || (Math.abs(selY-i.getCol()) <= 1 && Math.abs(selX-i.getRow()) == 0));
+    boolean bound = (Math.abs(selX-i.getRow()) <= 1 && Math.abs(selY-i.getCol()) == 0 || (Math.abs(selY-i.getCol()) <= 1 && Math.abs(selX-i.getRow()) == 0));
     System.out.println("Current:" + i.getColor());
     System.out.println(selX - i.getRow());
-    if(this.anyCombo() && bound && !i.equals(board[selX][selY])) {
+    // if(bound && !i.equals(board[selX][selY])) {
       board[selX][selY].setColor(i.getColor());
-      /* while(anyCombo()){
-        findCombos();
-        fallDown();
-        }*/
       i.setColor(colorTemp);
       movesLeft -= 1;
+      // }
+    findCombos();
+    if(!this.anyCombo() && !bound){
+      i.setColor(board[selX][selY].getColor());
+      board[selX][selY].setColor(colorTemp);
+      movesLeft += 1;
     }
+    
   }
       private void updateStatusPanel() {
 	        if (movesLeft==0) {
