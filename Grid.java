@@ -294,7 +294,7 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void selectedAction(Piece i){
-    boolean bound = (Math.abs(selX-i.getRow()) <= 1 && Math.abs(selY-i.getCol()) <= 1);// || (Math.abs(selY-i.getCol()) <= 1 && Math.abs(selX-i.getRow()) == 0));
+    boolean bound = (Math.abs(selX-i.getRow()) <= 1 && Math.abs(selY-i.getCol()) <= 1 || (Math.abs(selY-i.getCol()) <= 1 && Math.abs(selX-i.getRow()) == 0));
     System.out.println("Current:" + i.getColor());
     System.out.println(selX - i.getRow());
     if(this.anyCombo() && bound && !i.equals(board[selX][selY])) {
