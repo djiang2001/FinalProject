@@ -31,9 +31,11 @@ public class Grid extends JFrame implements ActionListener{
     add(createPiecePanel(),BorderLayout.CENTER);
     add(createStatusPanel(),BorderLayout.SOUTH);
     updateStatusPanel();
-
+      
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
+
+
   
   private JPanel createStatusPanel(){
     JPanel p = new JPanel();
@@ -92,7 +94,6 @@ public class Grid extends JFrame implements ActionListener{
         Piece here = board[i][j];
         Piece next1 = board[i][j+1];
         Piece last = board[i][j+2];
-        
         if (here.equals(next1) &&
             here.equals(last)){
           return true;
@@ -100,6 +101,38 @@ public class Grid extends JFrame implements ActionListener{
       }
     }
     return false;
+  }
+
+  public void find3h(){
+    for (int i = 0; i < board.length; i++){
+      for (int j = 0; j < board[i].length - 3; j++){
+        Piece here = board[i][j];
+        Piece next1 = board[i][j+1];
+        Piece last = board[i][j+2];
+        if (here.equals(next1) &&
+            here.equals(last)){
+          board[i][j].setCombo(true);
+          board[i][j+1].setCombo(true);
+          board[i][j+2].setCombo(true);
+        }
+      }
+    }
+  }
+
+  public void find3v(){
+    for (int i = 0; i < board.length - 3; i++){
+      for (int j = 0; j < board[i].length; j++){
+        Piece here = board[i][j];
+        Piece next = board[i+1][j];
+        Piece last = board[i+2][j];
+        if (here.equals(next) &&
+            here.equals(last)){
+          board[i][j].setCombo(true);
+          board[i+1][j].setCombo(true);
+          board[i+2][j].setCombo(true);
+        }
+      }
+    }
   }
 
   public boolean checkVertical(){
@@ -110,6 +143,9 @@ public class Grid extends JFrame implements ActionListener{
         Piece last = board[i+2][j];
         if (here.equals(next) &&
             here.equals(last)){
+          board[i][j].setCombo(true);
+          board[i+1][j].setCombo(true);
+          board[i+2][j].setCombo(true);
           return true;
         }
       }
@@ -139,6 +175,8 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void findCombos(){
+    find3h();
+    find3v();
     rowCombo();
     colCombo();
   }
@@ -150,14 +188,13 @@ public class Grid extends JFrame implements ActionListener{
           Piece here = board[i][j];
           Piece twov = board[i+1][j];
           Piece threev = board[i+2][j];
-          if( i + 2 < board.length ){
-            if (here.equals(twov) &&
-                here.equals(threev)){
-              board[i][j].setCombo(true);
-              board[i+1][j].setCombo(true);
-              board[i+2][j].setCombo(true);
-            }  
-          }
+          if (here.equals(twov) &&
+              here.equals(threev)){
+            board[i][j].setCombo(true);
+            board[i+1][j].setCombo(true);
+            board[i+2][j].setCombo(true);
+          }  
+          
           if( i + 4 < board.length ){
             Piece fourv = board[i+3][j];
             Piece fivev = board[i+4][j];
@@ -195,14 +232,13 @@ public class Grid extends JFrame implements ActionListener{
           Piece here = board[i][j];
           Piece twoh = board[i][j+1];
           Piece threeh = board[i][j+2];
-          if (j + 2 < board[i].length){
-            if (here.equals(twoh) &&
-                here.equals(threeh)){
+          if (here.equals(twoh) &&
+              here.equals(threeh)){
             board[i][j].setCombo(true);
             board[i][j+1].setCombo(true);
             board[i][j+2].setCombo(true);
-            }
           }
+        
           if (j + 4 < board[i].length){
             Piece fourh = board[i][j+3];
             Piece fiveh = board[i][j+4];
@@ -282,7 +318,10 @@ public class Grid extends JFrame implements ActionListener{
         updateStatusPanel();
         fallDown();
       }
-    }  
+    }
+    // else{
+    //   new End();
+    // }
   }
 
   public void notSelectedAction(Piece n){
@@ -299,6 +338,10 @@ public class Grid extends JFrame implements ActionListener{
     System.out.println(selX - i.getRow());
     if(this.anyCombo() && bound && !i.equals(board[selX][selY])) {
       board[selX][selY].setColor(i.getColor());
+      /* while(anyCombo()){
+        findCombos();
+        fallDown();
+        }*/
       i.setColor(colorTemp);
       movesLeft -= 1;
     }
