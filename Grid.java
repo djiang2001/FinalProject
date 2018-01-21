@@ -285,15 +285,18 @@ public class Grid extends JFrame implements ActionListener{
             board[i-1][j].setCombo(true);
 
             if(board[i][j].getRow() < board[i].length -3 && board[i+1][j].equals(board[i][j]) && board[i+2][j].equals(board[i][j]) && board[i+3][j].equals(board[i][j])){
+              board[i][j].setCombo(true);
               board[i+1][j].setCombo(true);
               board[i+2][j].setCombo(true);
               board[i+3][j].setCombo(true);
             } else
               if(board[i][j].getRow() < board[i].length -2 && board[i+1][j].equals(board[i][j]) && board[i+2][j].equals(board[i][j])){
+                board[i][j].setCombo(true);
                 board[i+1][j].setCombo(true);
                 board[i+2][j].setCombo(true);
               }else
                 if(board[i][j].getRow() < board[i].length -1 && board[i+1][j].equals(board[i][j])){
+                  board[i][j].setCombo(true);
                   board[i+1][j].setCombo(true);
                 } 
                
@@ -354,7 +357,7 @@ public class Grid extends JFrame implements ActionListener{
       movesLeft -= 1;
       // }
     findCombos();
-    if(!this.anyCombo() && !bound){
+    if(!this.anyCombo() || !bound){
       i.setColor(board[selX][selY].getColor());
       board[selX][selY].setColor(colorTemp);
       movesLeft += 1;
