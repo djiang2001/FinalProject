@@ -18,8 +18,9 @@ public class Start extends JFrame{
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-          start.dispose();
           new Main();
+          pane.remove(enter);
+          pane.revalidate();
         }
       }
       );
@@ -30,6 +31,8 @@ public class Start extends JFrame{
     pane.add(intro);
     pane.add(enter);
     enter.setVisible(false);
+
+    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
 
   public static void appendtext(){

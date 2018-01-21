@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main extends JFrame{
   private static Container pane;
-  private JFrame main = new JFrame("Introduction");
+  private JFrame main = new JFrame("UNBLOCKED");
   private static JButton enter = new JButton("Click Anywhere to Start Redemption Quest!");
 
   public Main(){
@@ -14,13 +14,11 @@ public class Main extends JFrame{
 
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-          new Grid();
-          main.dispose();
+          Grid game = new Grid();
         }
       });
 
     ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "/" + "title.jpg");
-    System.out.println(System.getProperty("user.dir") +"/" + "title.jpg");
     enter.setIcon(icon);
     enter.setHorizontalTextPosition(JButton.CENTER);
     enter.setVerticalTextPosition(JButton.BOTTOM);
@@ -34,9 +32,11 @@ public class Main extends JFrame{
     enter.setVisible(true);
     // main.add(enter);
     main.setVisible(true);
+    this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
 
   public static void main(String[] args){
     Main start = new Main();
+    start.setResizable(false);
   }
 }
