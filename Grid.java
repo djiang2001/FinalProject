@@ -31,9 +31,11 @@ public class Grid extends JFrame implements ActionListener{
     add(createPiecePanel(),BorderLayout.CENTER);
     add(createStatusPanel(),BorderLayout.SOUTH);
     updateStatusPanel();
-
+      
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
   }
+
+
   
   private JPanel createStatusPanel(){
     JPanel p = new JPanel();
