@@ -19,7 +19,7 @@ public class Start extends JFrame{
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
           start.dispose();
-          // new Title();
+          new Main();
         }
       }
       );
