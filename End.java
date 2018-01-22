@@ -12,6 +12,7 @@ public class End extends JFrame{
   private static JButton again = new JButton("Try Once More!");
   private static JButton more = new JButton("I Got Blocked Again :(");
 
+  // Game over Screen Constructor
   public End(String s){
     pane = this.getContentPane();
     this.setTitle(s);
@@ -19,6 +20,7 @@ public class End extends JFrame{
     end.setLocation(600,300);
     end.setLayout(new FlowLayout());
 
+    //Button Functions
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
           System.exit(0);
@@ -38,6 +40,7 @@ public class End extends JFrame{
         }
       });
 
+    //Failure or Success Paths
     if (s.equals("Failure")){
       end.add(new JLabel(new ImageIcon(System.getProperty("user.dir") + "/" + "blocked.png")));
       end.add(enter);
@@ -47,7 +50,6 @@ public class End extends JFrame{
       again.setVisible(true);
       end.setVisible(true);
     }
-
 
     else if (s.equals("Unblocked")){
       end.add(new JLabel(new ImageIcon(System.getProperty("user.dir") + "/" + "success.jpg")));
@@ -61,6 +63,7 @@ public class End extends JFrame{
     end.setResizable(false);
   }
 
+  //Main
   public static void main(String[]args){
     End test = new End("Failure");
   }

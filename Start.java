@@ -11,6 +11,7 @@ public class Start extends JFrame{
   private static JTextArea intro = new JTextArea();
   private static String words = "\n\nOh Dear!\n\nYou were talking to that one special person when your fingers fumbled. While trying to take back what you wrote, you have been blocked. Now it is your mission to be...";
 
+  //Game Intro Constructor
   public Start(){
     pane = this.getContentPane();
     this.setTitle("Mission Page");
@@ -18,6 +19,7 @@ public class Start extends JFrame{
     this.setLocation(700 ,300);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+    //Add properties
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
@@ -38,6 +40,7 @@ public class Start extends JFrame{
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
   }
 
+  //Animation Code
   public static void appendtext(){
     for (int i = 0; i < words.length(); i++){
       intro.append(words.charAt(i) + "");
@@ -47,10 +50,12 @@ public class Start extends JFrame{
     enter.setVisible(true);
   }
 
+  //Main
   public static void main(String[]args){
     Start intro = new Start();
     intro.setVisible(true);
     intro.setResizable(false);
     appendtext();
   }
+
 }

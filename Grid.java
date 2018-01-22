@@ -67,7 +67,7 @@ public class Grid extends JFrame implements ActionListener{
     beg.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
           if(numBeg > 0){
-          begOn = !begOn;
+            begOn = !begOn;
           }else{
             begOn = false;
           }
@@ -137,7 +137,7 @@ public class Grid extends JFrame implements ActionListener{
     }
     return false;
   }
-
+  
   public void find3h(){
     for (int i = 0; i < board.length; i++){
       for (int j = 0; j < board[i].length - 2; j++){
@@ -323,7 +323,7 @@ public class Grid extends JFrame implements ActionListener{
       findCombos();
       for(int i = board.length-1; i >= 0; i--){
         for(int j = 0; j < board[i].length; j++){
-
+          
           //Set Pieces in Combo to true
           if(board[i][j].getRow() != 0 && board[i][j].isCombo()){
             board[i][j].setColor(board[i-1][j].getColor());

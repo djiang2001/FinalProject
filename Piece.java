@@ -3,40 +3,44 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
 
-  enum PieceColor{
-    BLUE(java.awt.Color.BLUE),
-    GREEN(java.awt.Color.GREEN),
-    YELLOW(java.awt.Color.YELLOW),
-    RED(java.awt.Color.RED),
-    ORANGE(java.awt.Color.ORANGE),
-    MAGENTA(java.awt.Color.MAGENTA);  
-
-    public final java.awt.Color value;
-    
-    PieceColor(java.awt.Color value) { this.value = value; }
+//Enum Constructor
+enum PieceColor{
+  BLUE(java.awt.Color.BLUE),
+  GREEN(java.awt.Color.GREEN),
+  YELLOW(java.awt.Color.YELLOW),
+  RED(java.awt.Color.RED),
+  ORANGE(java.awt.Color.ORANGE),
+  MAGENTA(java.awt.Color.MAGENTA);  
+  
+  public final java.awt.Color value;
+ 
+  PieceColor(java.awt.Color value) { this.value = value; }
   
   private static Random rand = new Random();//helper method for random selection
   public static PieceColor randPick() {
     return PieceColor.values()[rand.nextInt(PieceColor.values().length)];
   }
 }
-    
+
+
+
 public class Piece extends JButton{
   public static final Border standard = new LineBorder(Color.black);
   private PieceColor color;
   public final int row, col;
   private boolean isCombo;
   private ImageIcon icon;
-  
-    public Piece(int row, int col, PieceColor color ){
-      this.row = row;
-      this.col = col;
-      setBorder(standard);
-      setColor(color);
-      ImageIcon icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.color + ".png");
-      this.setIcon(icon);
-      this.setCombo(false);
-    }
+
+  //Piece blocks constructor
+  public Piece(int row, int col, PieceColor color ){
+    this.row = row;
+    this.col = col;
+    setBorder(standard);
+    setColor(color);
+    ImageIcon icon =  new ImageIcon(System.getProperty("user.dir") + "/blocks/" + this.color + ".png");
+    this.setIcon(icon);
+    this.setCombo(false);
+  }
   
  //-------------------Getters and Setters--------------------
 
@@ -70,11 +74,8 @@ public class Piece extends JButton{
     return this.getColor().value == other.getColor().value;
   }
 
-    public String toString(){
-	return ""+color + "Block (" + row + "," + col;
-    }
-
-  
-    //------------------Icon Display------------------
+  public String toString(){
+    return ""+color + "Block (" + row + "," + col;
+  }
   
 }

@@ -8,6 +8,7 @@ public class Main extends JFrame{
   private JFrame main = new JFrame("UNBLOCKED");
   private static JButton enter = new JButton("Click Anywhere to Start Redemption Quest!");
 
+  //Title Page Constructor
   public Main(){
     pane = this.getContentPane();
     this.setSize(600,300);
@@ -19,6 +20,7 @@ public class Main extends JFrame{
         }
       });
 
+    //Add Image and Background
     ImageIcon icon = new ImageIcon(System.getProperty("user.dir") + "/" + "title.jpg");
     enter.setIcon(icon);
     enter.setHorizontalTextPosition(JButton.CENTER);
@@ -34,6 +36,7 @@ public class Main extends JFrame{
     main.setVisible(true);
   }
 
+  //Main
   public static void main(String[] args){
     Main start = new Main();
     start.setResizable(false);
