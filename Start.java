@@ -27,6 +27,7 @@ public class Start extends JFrame{
           intro.append("UNBLOCKED!");
           pane.remove(enter);
           pane.revalidate();
+          setVisible(false);
         }
       }
       );
