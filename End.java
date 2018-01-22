@@ -16,6 +16,7 @@ public class End extends JFrame{
     pane = this.getContentPane();
     this.setTitle(s);
     this.setSize(600,300);
+    end.setLocation(600,300);
     end.setLayout(new FlowLayout());
 
     enter.addActionListener(new ActionListener(){
@@ -61,6 +62,6 @@ public class End extends JFrame{
   }
 
   public static void main(String[]args){
-    End test = new End();
+    End test = new End("Failure");
   }
 }
