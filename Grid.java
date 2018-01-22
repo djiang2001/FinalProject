@@ -50,11 +50,17 @@ public class Grid extends JFrame implements ActionListener{
     p.add(annoyed,BorderLayout.SOUTH);
     annoyed.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
-          if(scores > goal){
+          movesLeft = 0;
+          updateStatusPanel();
+          /* if(scores > goal){
           new End("Unblocked");
           }else{
             new End("Failure");
           }
+          //pane.removeAll();
+          this.setVisible(false);
+          //ane.revalidate();
+          }*/
         }
       }
       );
@@ -352,9 +358,14 @@ public class Grid extends JFrame implements ActionListener{
     System.out.println(numCombo);
 
     if(begOn){
-      p.setColor(PieceColor.randPick());
-      numBeg -= 1;
-      } else
+      if (numBeg > 0){
+        p.setColor(PieceColor.randPick());
+        numBeg -= 1;
+      }
+      else {
+        begOn = false;
+      }
+    } else
     if(movesLeft > 0){
       if(!selected){
         notSelectedAction(p);
