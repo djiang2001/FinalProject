@@ -15,7 +15,7 @@ public class Start extends JFrame{
     pane = this.getContentPane();
     this.setTitle("Mission Page");
     this.setSize(600,300);
-    this.setLocation(500,50);
+    this.setLocation(700 ,300);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));

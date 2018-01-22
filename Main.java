@@ -11,7 +11,7 @@ public class Main extends JFrame{
   public Main(){
     pane = this.getContentPane();
     this.setSize(600,300);
-
+    main.setLocation(600,300);
     enter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
           main.dispose();
