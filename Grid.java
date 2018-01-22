@@ -9,6 +9,8 @@ public class Grid extends JFrame implements ActionListener{
   private final int Rows = 10, Cols = 10;
   private final Piece[][] board;
   private final JLabel status;
+  private final JButton beg = new JButton("Beg");
+  private final JButton annoyed = new JButton("I Give Up");
   private int movesLeft;
   private int goal;
   private int scores;
@@ -23,8 +25,7 @@ public class Grid extends JFrame implements ActionListener{
     scores = 0;
     board = new Piece [Rows][Cols];
     status = new JLabel();
-
-
+    
     this.setTitle("Unblocked");
     this.setSize(800,800);
     this.setLayout(new BorderLayout());
@@ -43,6 +44,8 @@ public class Grid extends JFrame implements ActionListener{
   private JPanel createStatusPanel(){
     JPanel p = new JPanel();
     p.add(status, BorderLayout.SOUTH);
+    p.add(beg,BorderLayout.SOUTH);
+    p.add(annoyed,BorderLayout.SOUTH);
     return p;
   }
 
@@ -359,11 +362,20 @@ public class Grid extends JFrame implements ActionListener{
       movesLeft -= 1;
       // }
     findCombos();
-    if(!this.anyCombo() || !bound){
+    if(!this.anyCombo()){
+      if(!bound){
       i.setColor(board[selX][selY].getColor());
       board[selX][selY].setColor(colorTemp);
       movesLeft += 1;
-    }
+      }
+    }else
+      if(!bound){
+        if(!this.anyCombo()){
+          i.setColor(board[selX][selY].getColor());
+          board[selX][selY].setColor(colorTemp);
+          movesLeft += 1;
+        }
+      }
     
   }
       private void updateStatusPanel() {
