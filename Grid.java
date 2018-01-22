@@ -369,6 +369,14 @@ public class Grid extends JFrame implements ActionListener{
       private void updateStatusPanel() {
 	        if (movesLeft==0) {
             status.setText("Game Over   Score: " + this.getScore() + "   Goal: " + this.getGoal());
+            if (this.getScore() >= this.getGoal()){
+              new End("Unblocked");
+              this.setVisible(false);
+            }
+            else {
+              new End("Failure");
+              this.setVisible(false);
+            }
 	        } else {
             status.setText("Moves:" + movesLeft + "  Score: " + this.getScore() + "   Goal: " + this.getGoal());
 	        }
