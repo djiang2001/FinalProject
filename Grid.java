@@ -69,7 +69,7 @@ public class Grid extends JFrame implements ActionListener{
         public void actionPerformed(ActionEvent e){
           if(numBeg > 0){
             begOn = !begOn;
-          }else{
+          }else if(numBeg == 0){
             begOn = false;
           }
         }
@@ -408,17 +408,19 @@ public class Grid extends JFrame implements ActionListener{
       i.setColor(colorTemp);
       movesLeft -= 1;
     findCombos();
-    if(anyCombo() && !bound || !anyCombo()){
+    if(anyCombo() && !bound || !anyCombo() && bound){
       i.setColor(board[selX][selY].getColor());
       for(int a = 0; a < board.length; a++){
         for(int j = 0; j < board[a].length; j++){
           board[a][j].setCombo(false);
         }
       }
+      movesLeft += 1;
       board[selX][selY].setColor(colorTemp);
     }else if(!bound){
         i.setColor(board[selX][selY].getColor());
       board[selX][selY].setColor(colorTemp);
+      movesLeft += 1;
     }
   }
   private void updateStatusPanel() {
