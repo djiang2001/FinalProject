@@ -4,8 +4,14 @@ Ahmed Imran
 Dahong Jiang
 
 ## Project Title
-Deblocked
+Unblocked
 
+## Instructions
+1. Compile Start.java
+2. Run Start
+3. Once in game, get score to at the the goal in order to win
+4. If you run out of moves and did not reach the goal, you will lose.
+5. If you pass the goal you will win.
 
 ## I. Project Idea
  - Create a match three puzzle game similar to Candy Crush Saga
