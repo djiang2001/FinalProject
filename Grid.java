@@ -57,7 +57,9 @@ public class Grid extends JFrame implements ActionListener{
     //Give Up Button Action 
     annoyed.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e){
+          setVisible(false);
           movesLeft = 0;
+          scores = 31000;
           updateStatusPanel();
         }
       }
