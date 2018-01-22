@@ -404,14 +404,20 @@ public class Grid extends JFrame implements ActionListener{
     boolean bound = ((Math.abs(selX-i.getRow()) == 1 && Math.abs(selY-i.getCol()) == 0) || ((Math.abs(selY-i.getCol()) == 1 && Math.abs(selX-i.getRow()) == 0)));
     System.out.println("Current:" + i.getColor());
     System.out.println(selX - i.getRow());
-    if(bound && !i.equals(board[selX][selY])) {
       board[selX][selY].setColor(i.getColor());
       i.setColor(colorTemp);
       movesLeft -= 1;
-    }
     findCombos();
-    if(!anyCombo()){
+    if(anyCombo() && !bound || !anyCombo()){
       i.setColor(board[selX][selY].getColor());
+      for(int a = 0; a < board.length; a++){
+        for(int j = 0; j < board[a].length; j++){
+          board[a][j].setCombo(false);
+        }
+      }
+      board[selX][selY].setColor(colorTemp);
+    }else if(!bound){
+        i.setColor(board[selX][selY].getColor());
       board[selX][selY].setColor(colorTemp);
     }
   }
