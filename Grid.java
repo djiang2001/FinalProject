@@ -12,13 +12,15 @@ public class Grid extends JFrame implements ActionListener{
   private final JButton beg = new JButton("Beg");
   private final JButton annoyed = new JButton("I Give Up");
   private int movesLeft;
-  private int goal;
+  private int goal = 30000;
   private int scores;
   private boolean selected = false;
   private int selX;
   private int selY;
   private PieceColor colorTemp;
   public int numCombo;
+  public int numBeg = 0;
+  public boolean begOn = false;
   
   public Grid(){
     movesLeft = 20;
@@ -46,6 +48,26 @@ public class Grid extends JFrame implements ActionListener{
     p.add(status, BorderLayout.SOUTH);
     p.add(beg,BorderLayout.SOUTH);
     p.add(annoyed,BorderLayout.SOUTH);
+    annoyed.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent e){
+          if(scores > goal){
+          new End("Unblocked");
+          }else{
+            new End("Failure");
+          }
+        }
+      }
+      );
+    beg.addActionListener(new ActionListener(){
+        public void actionPerformed(ActionEvent e){
+          if(numBeg > 0){
+          begOn = !begOn;
+          }else{
+            begOn = false;
+          }
+        }
+      }
+      );
     return p;
   }
 
@@ -299,6 +321,7 @@ public class Grid extends JFrame implements ActionListener{
                 board[i][j].setCombo(true);
                 board[i+1][j].setCombo(true);
                 board[i+2][j].setCombo(true);
+                numBeg+=1;
               }
             else if(board[i][j].getRow() < board[i].length -1 && board[i+1][j].equals(board[i][j])){
                   board[i][j].setCombo(true);
@@ -328,6 +351,10 @@ public class Grid extends JFrame implements ActionListener{
      System.out.println(p.isCombo());
     System.out.println(numCombo);
 
+    if(begOn){
+      p.setColor(PieceColor.randPick());
+      numBeg -= 1;
+      } else
     if(movesLeft > 0){
       if(!selected){
         notSelectedAction(p);
@@ -353,30 +380,19 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void selectedAction(Piece i){
-    boolean bound = (Math.abs(selX-i.getRow()) <= 1 && Math.abs(selY-i.getCol()) == 0 || (Math.abs(selY-i.getCol()) <= 1 && Math.abs(selX-i.getRow()) == 0));
+    boolean bound = (Math.abs(selX-i.getRow()) == 1 && Math.abs(selY-i.getCol()) == 0 || (Math.abs(selY-i.getCol()) == 1 && Math.abs(selX-i.getRow()) == 0));
     System.out.println("Current:" + i.getColor());
     System.out.println(selX - i.getRow());
-    // if(bound && !i.equals(board[selX][selY])) {
+     if(bound && !i.equals(board[selX][selY])) {
       board[selX][selY].setColor(i.getColor());
       i.setColor(colorTemp);
       movesLeft -= 1;
-      // }
-    findCombos();
-    if(!this.anyCombo()){
-      if(!bound){
-      i.setColor(board[selX][selY].getColor());
-      board[selX][selY].setColor(colorTemp);
-      movesLeft += 1;
       }
-    }else
-      if(!bound){
-        if(!this.anyCombo()){
+    findCombos();
+    if(!anyCombo()){
           i.setColor(board[selX][selY].getColor());
           board[selX][selY].setColor(colorTemp);
-          movesLeft += 1;
-        }
       }
-    
   }
       private void updateStatusPanel() {
 	        if (movesLeft==0) {
@@ -390,7 +406,7 @@ public class Grid extends JFrame implements ActionListener{
               this.setVisible(false);
             }
 	        } else {
-            status.setText("Moves:" + movesLeft + "  Score: " + this.getScore() + "   Goal: " + this.getGoal());
+            status.setText("Moves:" + movesLeft + "  Score: " + this.getScore() + "   Goal: " + this.getGoal() + "  Beg: " + numBeg) ;
 	        }
       }
   
