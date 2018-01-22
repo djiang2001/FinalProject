@@ -354,7 +354,7 @@ public class Grid extends JFrame implements ActionListener{
     countCombo();
     // System.out.println(p.getColor());
     // System.out.println(p.getRow());
-     System.out.println(p.isCombo());
+    System.out.println(p.isCombo());
     System.out.println(numCombo);
 
     if(begOn){
@@ -391,14 +391,14 @@ public class Grid extends JFrame implements ActionListener{
   }
 
   public void selectedAction(Piece i){
-    boolean bound = (Math.abs(selX-i.getRow()) == 1 && Math.abs(selY-i.getCol()) == 0 || (Math.abs(selY-i.getCol()) == 1 && Math.abs(selX-i.getRow()) == 0));
+    boolean bound = ((Math.abs(selX-i.getRow()) == 1 && Math.abs(selY-i.getCol()) == 0) || ((Math.abs(selY-i.getCol()) == 1 && Math.abs(selX-i.getRow()) == 0)));
     System.out.println("Current:" + i.getColor());
     System.out.println(selX - i.getRow());
-     if(bound && !i.equals(board[selX][selY])) {
+    if(bound && !i.equals(board[selX][selY])) {
       board[selX][selY].setColor(i.getColor());
       i.setColor(colorTemp);
       movesLeft -= 1;
-      }
+     }
     findCombos();
     if(!anyCombo()){
           i.setColor(board[selX][selY].getColor());
