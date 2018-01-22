@@ -12,6 +12,10 @@ Unblocked
 3. Once in game, get score to at the the goal in order to win
 4. If you run out of moves and did not reach the goal, you will lose.
 5. If you pass the goal you will win.
+6. If you wish to beg, click the beg button, and click one of the blocks. Beware, if you have no Begs left you may or may not lose a move!In addition, like always, begging may or may not give you the outcome you want.
+7. In order to get more beg chances, simply break combos. Some combos will give you beg chances.
+8. If you wish to restart, you can click give up.
+
 
 ## I. Project Idea
  - Create a match three puzzle game similar to Candy Crush Saga
@@ -23,10 +27,6 @@ Blocks
 -Add number of moves
 -Points for different chains
 -A point threshold that you have to reach in the number of moves
--If you wish to beg, click the beg button, and click one of the blocks. Beware, if you have no Begs left you may or may not lose a move!In addition, like always, begging may or may not give you the outcome you want.
--In order to get more beg chances, simply break combos. Some combos will give you beg chances.
--If you wish to restart, you can click give up.
-
 ## II. Critical Features
 
 ### I
@@ -46,8 +46,6 @@ Blocks
 
 ## III. To Be Added Later Features
 -Difficulty, which will change goal point
-
-## Instructions
 
 ## IV.Development Log
 ### 1/3/18
